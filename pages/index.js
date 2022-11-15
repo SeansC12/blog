@@ -1,15 +1,16 @@
 import React from "react";
 import BlogCard from "../components/BlogCard";
 
-export default function Home({ data }) {
+export default function Home({ data, dictionary }) {
   console.log(data);
   return (
     <div>
-      {data.blogs.map((blog) => {
+      {data.map((blog) => {
         return (
           <a
-            className="bg-red-400"
-            href={`http://localhost:3000/blogs/${blog.blog_id}`}
+            href={`http://localhost:3000/${
+              dictionary[blog.person_id - 1].name
+            }/${blog.url_name}`}
           >
             <BlogCard title={blog.blog_title} content={blog.blog} />
           </a>
@@ -19,8 +20,8 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps() {
-  const urlEndpoint = `http://localhost:3000/api/get-trending-blogs`;
+export async function getServerSideProps(context) {
+  const urlEndpoint = `http://localhost:3000/api/get-all-blogs`;
   const res = await fetch(urlEndpoint);
   const data = await res.json();
 
@@ -32,7 +33,8 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      data: data,
+      data: data.blogs,
+      dictionary: data.dictionary,
     },
   };
 }
