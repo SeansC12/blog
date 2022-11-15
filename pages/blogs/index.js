@@ -1,14 +1,14 @@
 import React from "react";
-import BlogCard from "../components/BlogCard";
+import BlogCard from "../../components/BlogCard";
 
-export default function Home({ data }) {
+export default function Blog({ data }) {
   console.log(data);
   return (
     <div>
       {data.blogs.map((blog) => {
         return (
           <a
-            className="bg-red-400"
+            className="my-5"
             href={`http://localhost:3000/blogs/${blog.blog_id}`}
           >
             <BlogCard title={blog.blog_title} content={blog.blog} />
@@ -20,7 +20,7 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const urlEndpoint = `http://localhost:3000/api/get-trending-blogs`;
+  const urlEndpoint = `http://localhost:3000/api/blogs`;
   const res = await fetch(urlEndpoint);
   const data = await res.json();
 
