@@ -1,17 +1,13 @@
 import React from "react";
 import BlogCard from "../components/BlogCard";
 
-export default function Home({ data, dictionary }) {
+export default function Home({ data }) {
   console.log(data);
   return (
     <div>
       {data.map((blog) => {
         return (
-          <a
-            href={`http://localhost:3000/${
-              dictionary[blog.person_id - 1].name
-            }/${blog.url_name}`}
-          >
+          <a href={`http://localhost:3000/${blog.name}/${blog.url_name}`}>
             <BlogCard title={blog.blog_title} content={blog.blog} />
           </a>
         );
@@ -34,7 +30,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: data.blogs,
-      dictionary: data.dictionary,
     },
   };
 }

@@ -3,14 +3,10 @@ import { query } from "../../../lib/db";
 export default async function handler(req, res) {
   try {
     const { person, blog } = req.query;
-    const currentPersonID = await query({
-      query: "SELECT person_id FROM users WHERE name = ?;",
-      values: [person],
-    });
 
     const sqlQuery =
-      "SELECT * FROM blogs WHERE person_id = ? AND url_name = ?;";
-    const valueParams = [currentPersonID[0].person_id, blog];
+      "SELECT blogs.blog, blogs.blog_title FROM blogs INNER JOIN users ON users.person_id = blogs.person_id WHERE users.name = ? AND blogs.url_name = ?;";
+    const valueParams = [person, blog];
     const data = await query({ query: sqlQuery, values: valueParams });
 
     res.status(200).json({ blogs: data });
