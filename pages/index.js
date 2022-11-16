@@ -2,7 +2,6 @@ import React from "react";
 import BlogCard from "../components/BlogCard";
 
 export default function Home({ data }) {
-  console.log(data);
   return (
     <div>
       {data.map((blog) => {
