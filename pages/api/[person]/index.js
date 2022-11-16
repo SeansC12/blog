@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const { person } = req.query;
 
     const sqlQuery =
-      "SELECT blogs.blog, blogs.blog_title, blogs.url_name FROM blogs INNER JOIN users ON users.person_id = blogs.person_id WHERE users.name = ?;";
+      "SELECT blogs.blog, blogs.blog_title, blogs.url_name, users.name FROM blogs INNER JOIN users ON users.person_id = blogs.person_id WHERE users.name = ?;";
     const valueParams = [person];
     const data = await query({ query: sqlQuery, values: valueParams });
 

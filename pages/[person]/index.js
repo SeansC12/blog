@@ -7,9 +7,12 @@ export default function Home({ data, person }) {
     <div>
       {data.blogs.map((blog) => {
         return (
-          <a href={`http://localhost:3000/${person}/${blog.url_name}`}>
-            <BlogCard title={blog.blog_title} content={blog.blog} />
-          </a>
+          <BlogCard
+            title={blog.blog_title}
+            content={blog.blog}
+            personName={blog.name}
+            url={`http://localhost:3000/${person}/${blog.url_name}`}
+          />
         );
       })}
     </div>
