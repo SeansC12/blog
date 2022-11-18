@@ -4,17 +4,15 @@ import BlogCard from "../components/BlogCard";
 export default function Home({ data }) {
   console.log(data);
   return (
-    <div>
+    <div className="pb-[300vh]">
       {data.map((blog) => {
         return (
-          // <a href={`http://localhost:3000/${blog.name}/${blog.url_name}`}>
           <BlogCard
             title={blog.blog_title}
             content={blog.blog}
             personName={blog.name}
             url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
           />
-          // </a>
         );
       })}
     </div>
