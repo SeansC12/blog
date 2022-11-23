@@ -34,9 +34,9 @@ function BlogCard({ title, description, personName, url }) {
     },
     hoveringOverArrowIcon: {
       opacity: 1,
-      rotate: [0, 45, 90, 180, 225, 270, 360],
+      // rotate: [0, 45, 90, 180, 225, 270, 360],
       transition: {
-        times: [0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0],
+        // times: [0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0],
         type: "tween",
         ease: "linear",
         duration: 0.3,
@@ -95,12 +95,18 @@ function BlogCard({ title, description, personName, url }) {
             Read More
           </motion.div>
           <motion.div
-            className="flex items-center justify-center"
+            className={`flex items-center justify-center ${
+              isHoveringOverBlogSpace ? "animate-pulse" : "animate-none"
+            }`}
             initial={false}
             animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
             variants={arrowIconVariants}
-            onMouseEnter={() => play()}
-            onMouseLeave={() => stop()}
+            onMouseEnter={() => {
+              play();
+            }}
+            onMouseLeave={() => {
+              stop();
+            }}
             whileHover="hoveringOverArrowIcon"
           >
             <AiOutlineArrowRight className="mt-1" size="2em" />
