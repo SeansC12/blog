@@ -4,12 +4,12 @@ import BlogCard from "../components/BlogCard";
 export default function Home({ data }) {
   console.log(data);
   return (
-    <div className="pb-[300vh]">
+    <div className="px-40 bg-[#0e141b] text-white">
       {data.map((blog) => {
         return (
           <BlogCard
             title={blog.blog_title}
-            content={blog.blog}
+            description={blog.description}
             personName={blog.name}
             url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
           />
