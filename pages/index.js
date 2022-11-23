@@ -30,7 +30,7 @@ export default function Home({ data }) {
         </div>
         <div className="col-start-2 col-span-1">
           <div className="flex flex-col items-start justify-center">
-            <div className="font-montserrat text-orange-400 font-semibold tracking-widest text-lg">
+            <div className="font-montserrat text-orange-400 font-semibold tracking-widest text-lg ml-1">
               FILTER BY TAGS
             </div>
             <div className="overflow-visible">
@@ -47,7 +47,7 @@ export default function Home({ data }) {
                         setActiveTags((curr) => [...curr, tagName]);
                       }
                     }}
-                    className={`rounded-md h-fit w-fit inline-block text-sm p-2 m-1 cursor-pointer ${
+                    className={`rounded-md h-fit w-fit inline-block text-sm px-3 py-[0.375rem] m-1 cursor-pointer font-medium ${
                       activeTags.includes(tagName)
                         ? "bg-purple-700"
                         : "bg-slate-700"
