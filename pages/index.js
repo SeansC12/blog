@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BlogCard from "../components/BlogCard";
 
 const temporaryTags = ["React", "JavaScript", "Vue", "Java", "DSA", "Web3"];
 
 export default function Home({ data }) {
-  console.log(data);
+  const [activeTags, setActiveTags] = useState([]);
+
+  useEffect(() => {
+    // TODO: CHANGE BLOG POSTS BASED ON CURRENTLY ACTIVE TAGS
+  }, [activeTags]);
+
   return (
     <div className="px-40 bg-[#0e141b] text-white">
       <div className="grid grid-cols-[75%_25%] grid-rows-1">
@@ -29,9 +34,25 @@ export default function Home({ data }) {
               FILTER BY TAGS
             </div>
             <div className="overflow-visible">
-              {temporaryTags.map((tagName) => {
+              {temporaryTags.map((tagName, key) => {
                 return (
-                  <div className="rounded-md bg-slate-700 h-fit w-fit inline-block text-sm p-2 m-1">
+                  <div
+                    key={key}
+                    onClick={() => {
+                      if (activeTags.includes(tagName)) {
+                        setActiveTags((curr) =>
+                          curr.filter((name) => name !== tagName)
+                        );
+                      } else {
+                        setActiveTags((curr) => [...curr, tagName]);
+                      }
+                    }}
+                    className={`rounded-md h-fit w-fit inline-block text-sm p-2 m-1 cursor-pointer ${
+                      activeTags.includes(tagName)
+                        ? "bg-purple-700"
+                        : "bg-slate-700"
+                    }`}
+                  >
                     {tagName}
                   </div>
                 );
