@@ -32,6 +32,16 @@ function BlogCard({ title, description, personName, url }) {
         duration: 0.3,
       },
     },
+    hoveringOverArrowIcon: {
+      opacity: 1,
+      rotate: [0, 45, 90, 180, 225, 270, 360],
+      transition: {
+        times: [0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0],
+        type: "tween",
+        ease: "linear",
+        duration: 0.3,
+      },
+    },
     isNotHovering: {
       opacity: 0,
       transition: {
@@ -65,16 +75,25 @@ function BlogCard({ title, description, personName, url }) {
         onMouseLeave={() => setIsHoveringOverBlogSpace(false)}
         href={url}
       >
+        <motion.h1
+          initial={false}
+          animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
+          variants={highlightedTextVariants}
+          className="text-2xl font-bold my-3 font-lato text-white"
+        >
+          {title}
+        </motion.h1>
+
+        <h2 className="text-base text-white mt-2 mb-6">{description}</h2>
+
         <div className="flex flex-row gap-2">
-          <motion.h1
-            initial={false}
+          <motion.div
             animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
             variants={highlightedTextVariants}
-            className="text-2xl font-bold my-3 font-lato text-white"
+            className="font-lato font-bold text-white grow h-full"
           >
-            {title}
-          </motion.h1>
-
+            Read More
+          </motion.div>
           <motion.div
             className="flex items-center justify-center"
             initial={false}
@@ -82,20 +101,11 @@ function BlogCard({ title, description, personName, url }) {
             variants={arrowIconVariants}
             onMouseEnter={() => play()}
             onMouseLeave={() => stop()}
+            whileHover="hoveringOverArrowIcon"
           >
-            <AiOutlineArrowRight className="mt-1" />
+            <AiOutlineArrowRight className="mt-1" size="2em" />
           </motion.div>
         </div>
-
-        <h2 className="text-base text-white">{description}</h2>
-
-        <motion.div
-          animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
-          variants={highlightedTextVariants}
-          className="font-lato font-bold text-white grow h-full"
-        >
-          Read More
-        </motion.div>
       </a>
     </div>
   );
