@@ -52,7 +52,7 @@ function BlogCard({ title, description, personName, url }) {
   };
 
   return (
-    <div className="mb-5 p-10 border-b-2 border-b-gray-500 font-lato">
+    <div className="mb-5 py-6 px-2 font-lato">
       {/* Author who published article */}
       <a
         href={`http://localhost:3000/${personName}`}
@@ -84,16 +84,8 @@ function BlogCard({ title, description, personName, url }) {
           {title}
         </motion.h1>
 
-        <h2 className="text-base text-white mt-2 mb-6">{description}</h2>
-
-        <div className="flex flex-row gap-2">
-          <motion.div
-            animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
-            variants={highlightedTextVariants}
-            className="font-lato font-bold text-white grow h-full"
-          >
-            Read More
-          </motion.div>
+        <div className="flex flex-row gap-10">
+          <h2 className="text-base text-white mt-2 mb-6">{description}</h2>
           <motion.div
             className={`flex items-center justify-center ${
               isHoveringOverBlogSpace ? "animate-pulse" : "animate-none"
@@ -112,6 +104,14 @@ function BlogCard({ title, description, personName, url }) {
             <AiOutlineArrowRight className="mt-1" size="2em" />
           </motion.div>
         </div>
+
+        <motion.div
+          animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
+          variants={highlightedTextVariants}
+          className="font-lato font-bold text-white grow h-full"
+        >
+          Read More
+        </motion.div>
       </a>
     </div>
   );
