@@ -4,7 +4,7 @@ import BlogCard from "../../components/BlogCard";
 export default function Home({ data, person }) {
   console.log(data);
   return (
-    <div>
+    <div className="bg-[#0e141b]">
       {data.blogs.map((blog) => {
         return (
           <BlogCard

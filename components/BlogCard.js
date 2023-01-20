@@ -87,9 +87,8 @@ function BlogCard({ title, description, personName, url }) {
         <div className="flex flex-row gap-10">
           <h2 className="text-base text-white mt-2 mb-6">{description}</h2>
           <motion.div
-            className={`flex items-center justify-center ${
-              isHoveringOverBlogSpace ? "animate-pulse" : "animate-none"
-            }`}
+            className={`flex items-center justify-center ${isHoveringOverBlogSpace ? "animate-pulse" : "animate-none"
+              }`}
             initial={false}
             animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
             variants={arrowIconVariants}
@@ -105,13 +104,11 @@ function BlogCard({ title, description, personName, url }) {
           </motion.div>
         </div>
 
-        <motion.div
-          animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
-          variants={highlightedTextVariants}
+        <div
           className="font-lato font-bold text-white grow h-full"
         >
           Read More
-        </motion.div>
+        </div>
       </a>
     </div>
   );

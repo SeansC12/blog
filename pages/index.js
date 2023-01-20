@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "../components/BlogCard";
+import Tag from "../components/Tag";
+import PopularReads from "../components/PopularReads";
 
 const temporaryTags = ["React", "JavaScript", "Vue", "Java", "DSA", "Web3"];
 
@@ -12,7 +14,7 @@ export default function Home({ data }) {
 
   return (
     <div className="px-40 bg-[#0e141b] text-white">
-      <div className="grid grid-cols-[75%_25%] grid-rows-1">
+      <div className="grid grid-cols-[70%_30%] grid-rows-1">
         <div className="col-start-1 col-span-1">
           <div className="ml-2 font-montserrat text-orange-400 font-semibold tracking-widest text-lg">
             TRENDING
@@ -30,32 +32,25 @@ export default function Home({ data }) {
         </div>
         <div className="col-start-2 col-span-1">
           <div className="flex flex-col items-start justify-center">
-            <div className="font-montserrat text-orange-400 font-semibold tracking-widest text-lg ml-1">
+            <div className="font-montserrat text-orange-400 font-semibold tracking-widest text-lg ml-1 mb-5">
               FILTER BY TAGS
             </div>
-            <div className="overflow-visible">
+            <div className="flex gap-2 flex-wrap">
               {temporaryTags.map((tagName, key) => {
+                // Code for each category tag to filter by
                 return (
-                  <div
-                    key={key}
-                    onClick={() => {
-                      if (activeTags.includes(tagName)) {
-                        setActiveTags((curr) =>
-                          curr.filter((name) => name !== tagName)
-                        );
-                      } else {
-                        setActiveTags((curr) => [...curr, tagName]);
-                      }
-                    }}
-                    className={`rounded-md h-fit w-fit inline-block text-sm px-3 py-[0.375rem] m-1 cursor-pointer font-medium ${
-                      activeTags.includes(tagName)
-                        ? "bg-purple-700"
-                        : "bg-slate-700"
-                    }`}
-                  >
-                    {tagName}
-                  </div>
+                  <Tag tagName={tagName} key={key} activeTags={activeTags} setActiveTags={setActiveTags} />
                 );
+              })}
+            </div>
+            <div className="font-montserrat text-orange-400 font-semibold tracking-widest text-lg ml-1 mt-24 mb-5">
+              POPULAR
+            </div>
+            <div className="flex flex-col gap-8">
+              {data.map((blog) => {
+                return (
+                  <PopularReads title={blog.blog_title} url={`http://localhost:3000/${blog.name}/${blog.url_name}`} personName={blog.name} />
+                )
               })}
             </div>
           </div>
