@@ -7,12 +7,6 @@ function NavBar() {
   const isVisible = useScroll();
   const { user, error, isLoading } = useUser();
 
-  // Once user has loaded
-  // if (user) {
-  //   console.log("hi");
-  //   isUserInsideDB = isUserInDB(user);
-  // }
-
   return (
     <div
       className={`sticky bg-red-500 h-16 top-0 flex items-center justify-between ${isVisible ? "top-0" : "-top-16"
