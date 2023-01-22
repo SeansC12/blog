@@ -1,4 +1,3 @@
-import { AiOutlineConsoleSql } from "react-icons/ai";
 import { query } from "../../../lib/db";
 
 export default async function handler(req, res) {
