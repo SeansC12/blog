@@ -10,6 +10,7 @@ export default async function handler(req, res) {
 
     const data = await query({ query: sqlQuery, values: valueParams });
 
+    // Going to check if the user actually exists    
     if (data.length !== 0) {
       // Valid person has blog articles
       res.status(200).json({ blogs: data });
@@ -19,8 +20,7 @@ export default async function handler(req, res) {
 
       if (personWithThisName.length === 0) {
         // This person does not exist
-        console.log("broman");
-        res.status(500).json({ error: "This person does not exist" });
+        res.status(400).json({ error: "This person does not exist" });
       } else {
         // This person does exist, it is just that the person has 0 blog articles
         res.status(200).json({ blogs: data });
