@@ -25,24 +25,30 @@ export default function Home({ data, person }) {
 export async function getServerSideProps(context) {
   const { person: personName } = context.params;
 
-  // Fetch the blogs
-  const sqlQuery =
-    "SELECT blogs.blog, blogs.blog_title, blogs.url_name, users.name FROM blogs INNER JOIN users ON users.person_id = blogs.person_id WHERE users.name = ?;";
-  const valueParams = [personName];
+  try {
+    // Fetch the blogs
+    const sqlQuery =
+      "SELECT blogs.blog, blogs.blog_title, blogs.url_name, users.name FROM blogs INNER JOIN users ON users.person_id = blogs.person_id WHERE users.name = ?;";
+    const valueParams = [personName];
 
-  const data = await query({ query: sqlQuery, values: valueParams });
+    const data = await query({ query: sqlQuery, values: valueParams });
 
-  // Going to check if the user actually exists
-  if (data.length < 1) {
-    const personWithThisName = await query({ query: "SELECT person_id FROM users WHERE name = ?", values: [personName] });
+    // Going to check if the user actually exists
+    if (data.length < 1) {
+      const personWithThisName = await query({ query: "SELECT person_id FROM users WHERE name = ?", values: [personName] });
 
-    if (personWithThisName.length < 1) {
-      // This person does not exist
-      return {
-        notFound: true,
-      };
+      if (personWithThisName.length < 1) {
+        // This person does not exist
+        return {
+          notFound: true,
+        };
+      }
     }
+
+  } catch (error) {
+    throw Error(error.message)
   }
+
 
   return {
     props: {
