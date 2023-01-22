@@ -3,7 +3,6 @@ import BlogCard from "../../components/BlogCard";
 import { query } from "../../lib/db";
 
 export default function Home({ data }) {
-  console.log(data);
   return (
     <div className="bg-[#0e141b]">
       {data && data.map((blog, key) => {
