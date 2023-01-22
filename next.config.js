@@ -7,6 +7,9 @@ const nextConfig = {
       use: { loader: "file-loader" },
       type: "asset/resource",
     });
+    config.resolve.fallback = {
+      fs: false,
+    };
     return config;
   },
 };

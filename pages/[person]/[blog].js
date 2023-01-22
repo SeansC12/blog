@@ -5,8 +5,11 @@ export default function Home({ data }) {
   console.log(data);
   return (
     <div className="bg-[#0e141b]">
-      {data.blogs.map((blog) => {
-        return <BlogCard title={blog.blog_title} content={blog.blog} />;
+      {data.blogs.map((blog, key) => {
+        return (
+          <div key={key}>
+            <BlogCard title={blog.blog_title} content={blog.blog} />
+          </div>);
       })}
     </div>
   );

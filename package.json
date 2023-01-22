@@ -9,14 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^2.1.0",
+    "cardinal": "^2.1.1",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
     "framer-motion": "^7.6.7",
     "mysql2": "^2.3.3",
+    "net": "^1.0.2",
     "next": "13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
+    "tls": "^0.0.1",
     "use-sound": "^4.0.1"
   },
   "devDependencies": {
