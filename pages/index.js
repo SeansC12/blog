@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BlogCard from "../components/BlogCard";
 import Tag from "../components/Tag";
 import PopularReads from "../components/PopularReads";
+import { query } from "./../lib/db";
 
 const temporaryTags = ["React", "JavaScript", "Vue", "Java", "DSA", "Web3"];
 
@@ -61,9 +62,9 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const urlEndpoint = `http://localhost:3000/api/get-all-blogs`;
-  const res = await fetch(urlEndpoint);
-  const data = await res.json();
+  const sqlQuery = `SELECT blogs.blog_title, blogs.url_name, blogs.description, users.name FROM blogs INNER JOIN users ON users.person_id = blogs.person_id;`;
+  const valueParams = [];
+  const data = await query({ query: sqlQuery, values: valueParams });
 
   if (!data) {
     return {
@@ -73,7 +74,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      data: data.blogs,
+      data: data,
     },
   };
 }

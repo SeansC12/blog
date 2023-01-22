@@ -1,7 +1,6 @@
 import React from "react";
 import useScroll from "../hooks/useScroll";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { isUserInDB } from "../lib/UserInDB";
 
 function NavBar() {
   const isVisible = useScroll();
