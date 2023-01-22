@@ -45,15 +45,16 @@ export async function getServerSideProps(context) {
       }
     }
 
+    return {
+      props: {
+        data: data,
+        person: personName,
+      },
+    };
+
   } catch (error) {
     throw Error(error.message)
   }
 
 
-  return {
-    props: {
-      data: data,
-      person: personName,
-    },
-  };
 }
