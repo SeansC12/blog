@@ -5,7 +5,7 @@ import { query } from "../../lib/db";
 export default function Home({ data, person }) {
   return (
     <div className="bg-[#0e141b]">
-      {data.blogs && data.blogs.map((blog, key) => {
+      {data && data.map((blog, key) => {
         return (
           <div key={key}>
             <BlogCard
@@ -45,6 +45,8 @@ export async function getServerSideProps(context) {
       }
     }
 
+    console.log(data);
+
     return {
       props: {
         data: data,
@@ -55,6 +57,4 @@ export async function getServerSideProps(context) {
   } catch (error) {
     throw Error(error.message)
   }
-
-
 }
