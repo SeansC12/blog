@@ -21,13 +21,11 @@ export default function Home({ data, person }) {
   );
 }
 
+// Runs on the server
 export async function getServerSideProps(context) {
   const { person: personName } = context.params;
-  // Fetch API blogs
-  // const urlEndpoint = `http://localhost:3000/api/${person}`;
-  // const res = await fetch(urlEndpoint);
-  // const data = await res.json();
 
+  // Fetch the blogs
   const sqlQuery =
     "SELECT blogs.blog, blogs.blog_title, blogs.url_name, users.name FROM blogs INNER JOIN users ON users.person_id = blogs.person_id WHERE users.name = ?;";
   const valueParams = [personName];
@@ -38,7 +36,7 @@ export async function getServerSideProps(context) {
   if (data.length < 1) {
     const personWithThisName = await query({ query: "SELECT person_id FROM users WHERE name = ?", values: [personName] });
 
-    if (personWithThisName.length === 0) {
+    if (personWithThisName.length < 1) {
       // This person does not exist
       return {
         notFound: true,
