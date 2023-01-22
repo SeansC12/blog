@@ -52,7 +52,7 @@ function BlogCard({ title, description, personName, url }) {
   };
 
   return (
-    <div className="mb-5 py-6 px-2 font-lato">
+    <div className="mb-5 py-6 px-2 font-lato w-full">
       {/* Author who published article */}
       <a
         href={`http://localhost:3000/${personName}`}
@@ -84,10 +84,10 @@ function BlogCard({ title, description, personName, url }) {
           {title}
         </motion.h1>
 
-        <div className="flex flex-row gap-10">
+        <div className="flex flex-row justify-between">
           <h2 className="text-base text-white mt-2 mb-6">{description}</h2>
           <motion.div
-            className={`flex items-center justify-center ${isHoveringOverBlogSpace ? "animate-pulse" : "animate-none"
+            className={`flex items-center justify-center mr-10 ${isHoveringOverBlogSpace ? "animate-pulse" : "animate-none"
               }`}
             initial={false}
             animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
