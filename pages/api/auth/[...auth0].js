@@ -32,7 +32,6 @@ export default handleAuth({
             await handleCallback(req, res, { afterCallback });
         } catch (error) {
             throw Error(error.message);
-            res.status(error.status || 500).end();
         }
     }
 });

@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.1.0",
     "cardinal": "^2.1.1",
+    "dotenv": "^16.0.3",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
     "framer-motion": "^7.6.7",

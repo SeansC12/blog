@@ -3,11 +3,16 @@ import BlogCard from "../components/BlogCard";
 import Tag from "../components/Tag";
 import PopularReads from "../components/PopularReads";
 import { query } from "./../lib/db";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const temporaryTags = ["React", "JavaScript", "Vue", "Java", "DSA", "Web3"];
 
 export default function Home({ data }) {
   const [activeTags, setActiveTags] = useState([]);
+  const { user, error, isLoading } = useUser();
+
+  console.log(user)
+
 
   useEffect(() => {
     // TODO: CHANGE BLOG POSTS BASED ON CURRENTLY ACTIVE TAGS
