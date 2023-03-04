@@ -20,7 +20,9 @@ function NavBar() {
       className={`sticky bg-[#0e141b] text-white border-b-[1px] mb-4 border-b-gray-800 h-16 top-0 flex items-center justify-between ${isVisible ? "top-0" : "-top-16"
         } transition-all duration-500`}
     >
-      <Image src={logo} className="w-12 ml-5" />
+      <a href="/">
+        <Image src={logo} className="w-12 ml-5" />
+      </a>
       {user ?
         <div class="hidden md:block mr-5" ref={userSettingsRef}>
           <div class="ml-4 flex items-center md:ml-6">
