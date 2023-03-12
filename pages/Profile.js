@@ -1,16 +1,13 @@
 import React, { useRef, useState } from 'react'
 import { useUser } from '../contexts/UserContext';
-import { useRouter } from 'next/router';
-import dotenv from 'dotenv';
 
 function Profile() {
   const [user] = useUser();
   const [changesMade, setChangesMade] = useState(false);
   const nameRef = useRef();
-  const router = useRouter();
 
   const handleNameChange = () => {
-    if (nameRef.current.value === user.nickname) {
+    if (nameRef.current.value === user.name) {
       // No change
       setChangesMade(false);
       return
@@ -25,7 +22,7 @@ function Profile() {
       method: "PATCH",
       body: JSON.stringify({
         name: nameRef.current.value,
-        userID: user.sub
+        userID: user.id
       })
     })
   }
@@ -39,7 +36,7 @@ function Profile() {
           <img src={user && user.picture} className="rounded-full w-24 aspect-square" />
           <div className="flex flex-col">
             <div className="font-lato">Name</div>
-            <input onChange={handleNameChange} ref={nameRef} type="text" defaultValue={user && user.name} className="text-black w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"></input>
+            <input onChange={handleNameChange} ref={nameRef} type="text" defaultValue={user ? user.name : ""} className="text-black w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"></input>
           </div>
         </div>
       </div>
