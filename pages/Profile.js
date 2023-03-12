@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
-import { useUser } from '@auth0/nextjs-auth0/client'
+import { useUser } from '../contexts/UserContext';
 import { useRouter } from 'next/router';
 import dotenv from 'dotenv';
 
 function Profile() {
-  const { user, error, isLoading } = useUser();
+  const [user] = useUser();
   const [changesMade, setChangesMade] = useState(false);
   const nameRef = useRef();
   const router = useRouter();
@@ -20,10 +20,6 @@ function Profile() {
   }
 
   const handleSubmit = async () => {
-    // I need to do 2 things, change the auth0 user object and change my personal SQL database
-
-    console.log(nameRef.current.value, user.sub)
-
     // Update SQL database
     await fetch("/api/patchName", {
       method: "PATCH",
@@ -32,24 +28,9 @@ function Profile() {
         userID: user.sub
       })
     })
-
-    // Update auth0 user object
-    await fetch("https://dev-tz4x8n4k5k5q3dl7.us.auth0.com/api/v2/users/" + user.sub, {
-      method: 'PATCH',
-      headers: {
-        authorization: "Bearer " + process.env.NEXT_PUBLIC_AUTH0_MANAGEMENT_TOKEN, 'content-type': 'application/json'
-      },
-      // body: JSON.stringify({
-      //   user_metadata:
-      //     { nickname: nameRef.current.value }
-      // })
-      body: JSON.stringify({
-        nickname: nameRef.current.value
-      })
-    })
-
-    router.push("/");
   }
+
+  console.log(user);
 
   return (
     <div className="flex items-center justify-center flex-col">
@@ -58,7 +39,7 @@ function Profile() {
           <img src={user && user.picture} className="rounded-full w-24 aspect-square" />
           <div className="flex flex-col">
             <div className="font-lato">Name</div>
-            <input onChange={handleNameChange} ref={nameRef} type="text" defaultValue={user && user.nickname} className="text-black w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"></input>
+            <input onChange={handleNameChange} ref={nameRef} type="text" defaultValue={user && user.name} className="text-black w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"></input>
           </div>
         </div>
       </div>
