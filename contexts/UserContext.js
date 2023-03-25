@@ -8,13 +8,18 @@ export function useUser() {
   return useContext(UserContext)
 }
 
-function UserProvider({ children }) {
+export function user() {
   const [user, setUser] = useState();
 
   useEffect(() => {
+    let isSubscribed = true;
+
     const fetchUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
-      console.log(user.id);
+
+      if (!user) {
+        return
+      }
 
       const res = await fetch("/api/getUserObject", {
         method: "PATCH",
@@ -22,25 +27,28 @@ function UserProvider({ children }) {
           id: user.id
         })
       })
-      const userObject = res.json();
+      const userObject = await res.json();
       console.log(userObject);
-      setUser(userObject);
+
+      if (isSubscribed) {
+        setUser(userObject);
+      }
     }
 
     fetchUser();
+
+    return () => isSubscribed = false;
   }, [])
 
+  return [user, setUser]
+}
+
+function UserProvider({ children }) {
   return (
-    <UserContext.Provider value={[user, setUser]}>
+    <UserContext.Provider value={[...user()]}>
       {children}
     </UserContext.Provider>
   )
-}
-
-export async function getServerSideProps(context) {
-  return {
-    props: {}, // will be passed to the page component as props
-  }
 }
 
 export default UserProvider
