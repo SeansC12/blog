@@ -3,6 +3,7 @@ import logo from "./../public/logo.png";
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useUser } from '../contexts/UserContext';
+import { supabase } from '../utils/supabase';
 
 
 function Login() {
@@ -20,20 +21,23 @@ function Login() {
       return;
     }
 
-    // Update current database
-    const res = await fetch("/api/signup", {
-      method: "PATCH",
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      })
-    })
-    const data = await res.json();
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
 
-    if (res.status !== 200) {
-      setError(data.message);
+    if (error) {
+      setError(error);
       return;
     }
+
+    // Update my MySQL database
+    await fetch("/api/signup", {
+      method: "PATCH",
+      body: JSON.stringify({
+        user: data
+      })
+    })
 
     router.push("/");
   }

@@ -7,8 +7,8 @@ function Profile() {
   // const [user] = useUser();
   const [changesMade, setChangesMade] = useState(false);
   const nameRef = useRef();
-  const [user, setUser] = useState({});
-  const [supabaseUser, setSupabaseUser] = useState({});
+  const [user, setUser] = useState();
+  const [supabaseUser, setSupabaseUser] = useState();
   const router = useRouter();
 
   useEffect(() => {

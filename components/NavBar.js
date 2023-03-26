@@ -12,7 +12,7 @@ function NavBar() {
   // const [user] = useUser();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const userSettingsRef = useRef();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
   const router = useRouter();
 
   useOutsideClickAlerter(() => {
@@ -26,23 +26,35 @@ function NavBar() {
       throw new Error(error);
     }
 
-    router.push("/")
+    router.push("/");
   }
 
   useEffect(() => {
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
-      // const user = await res.json();
+      const thing = await supabase.auth.getUser();
 
-      setUser(user);
+      if (user) {
+        // Get user from my own custom MySQL database
+        const res = await fetch("/api/getUserObject", {
+          method: "PATCH",
+          body: JSON.stringify({
+            id: user.id
+          })
+        });
+
+        const { data } = await res.json();
+        setUser(data);
+      }
+      console.log(thing);
     }
 
     getUser();
   }, [])
 
-  useEffect(() => {
-    console.log(user);
-  }, [user])
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user])
 
 
   return (

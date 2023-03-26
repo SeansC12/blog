@@ -3,7 +3,7 @@ import logo from "./../public/logo.png";
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useUser } from '../contexts/UserContext';
-
+import { supabase } from '../utils/supabase';
 
 function Login() {
   const usernameRef = useRef();
@@ -13,22 +13,15 @@ function Login() {
   // const [user, setUser] = useUser();
 
   async function loginHandler(email, password) {
-    // Update current database
-    const res = await fetch("/api/login", {
-      method: "PATCH",
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      })
-    })
-    const data = await res.json();
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
 
-    if (res.status !== 200) {
-      setError(data.message);
-      return
+    if (error) {
+      setError(error);
+      return;
     }
-
-    // setUser(data.user);
 
     router.push("/");
   }
