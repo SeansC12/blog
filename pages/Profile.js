@@ -1,10 +1,38 @@
-import React, { useRef, useState } from 'react'
+import { useRouter } from 'next/router';
+import React, { useEffect, useRef, useState } from 'react'
 import { useUser } from '../contexts/UserContext';
+import { supabase } from '../utils/supabase';
 
 function Profile() {
-  const [user] = useUser();
+  // const [user] = useUser();
   const [changesMade, setChangesMade] = useState(false);
   const nameRef = useRef();
+  const [user, setUser] = useState({});
+  const [supabaseUser, setSupabaseUser] = useState({});
+  const router = useRouter();
+
+  useEffect(() => {
+    const getUser = async () => {
+      // Supabase user
+      const { data: { user } } = await supabase.auth.getUser();
+      setSupabaseUser(user);
+
+      if (user) {
+        // Get user from my own custom MySQL database
+        const res = await fetch("/api/getUserObject", {
+          method: "PATCH",
+          body: JSON.stringify({
+            id: user.id
+          })
+        });
+
+        const { data } = await res.json();
+        setUser(data);
+      }
+    }
+
+    getUser();
+  }, [])
 
   const handleNameChange = () => {
     if (nameRef.current.value === user.name) {
@@ -16,18 +44,20 @@ function Profile() {
     setChangesMade(true);
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     // Update SQL database
-    await fetch("/api/patchName", {
-      method: "PATCH",
-      body: JSON.stringify({
-        name: nameRef.current.value,
-        userID: user.id
+    (async () => {
+      await fetch("/api/patchName", {
+        method: "PATCH",
+        body: JSON.stringify({
+          name: nameRef.current.value,
+          userID: user.person_id
+        })
       })
-    })
-  }
+    })()
 
-  console.log(user);
+    router.push("/")
+  }
 
   return (
     <div className="flex items-center justify-center flex-col">

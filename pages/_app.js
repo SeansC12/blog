@@ -6,12 +6,12 @@ import { supabase } from "../utils/supabase";
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <UserProvider>
-        <div className="bg-[#0e141b] text-white">
-          <NavBar />
-          <Component {...pageProps} />
-        </div>
-      </UserProvider>
+      {/* <UserProvider> */}
+      <div className="bg-[#0e141b] text-white">
+        <NavBar />
+        <Component {...pageProps} />
+      </div>
+      {/* </UserProvider> */}
     </>
   );
 }

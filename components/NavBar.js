@@ -1,22 +1,49 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import useScroll from "../hooks/useScroll";
 import { useUser } from "../contexts/UserContext";
 import Image from "next/image";
 import logo from "./../public/logo.png";
 import useOutsideClickAlerter from "../hooks/useOutsideClickAlerter";
 import { supabase } from "../utils/supabase";
+import { useRouter } from "next/router";
 
 function NavBar() {
   const isVisible = useScroll();
-  const [user] = useUser();
+  // const [user] = useUser();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const userSettingsRef = useRef();
+  const [user, setUser] = useState({});
+  const router = useRouter();
 
   useOutsideClickAlerter(() => {
     setIsUserMenuOpen(false)
   }, userSettingsRef);
 
-  console.log(user);
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      throw new Error(error);
+    }
+
+    router.push("/")
+  }
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      // const user = await res.json();
+
+      setUser(user);
+    }
+
+    getUser();
+  }, [])
+
+  useEffect(() => {
+    console.log(user);
+  }, [user])
+
 
   return (
     <div
@@ -44,7 +71,7 @@ function NavBar() {
 
                   {/* <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-200" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a> */}
 
-                  <a href="/api/auth/logout" className="block px-4 pt-2 pb-3 text-sm text-red-500 hover:bg-red-200" role="menuitem" tabindex="-1" id="user-menu-item-2">Log out</a>
+                  <div onClick={logout} className="block px-4 pt-2 pb-3 text-sm text-red-500 hover:bg-red-200" role="menuitem" tabindex="-1" id="user-menu-item-2">Log out</div>
                 </div>
                 :
                 null}
