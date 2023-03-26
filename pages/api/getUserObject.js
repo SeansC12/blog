@@ -7,6 +7,6 @@ export default async function handler(req, res) {
         res.status(200).json({ message: "200 OK", data: data[0] })
     } catch (err) {
         res.status(500).json({ message: "500 BAD" });
-        throw Error(err)
+        throw Error(err);
     }
 }
