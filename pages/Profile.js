@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
 import { useUser } from '../contexts/UserContext';
 import { supabase } from '../utils/supabase';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 function Profile() {
   // const [user] = useUser();
@@ -10,6 +11,23 @@ function Profile() {
   const [user, setUser] = useState();
   const [supabaseUser, setSupabaseUser] = useState();
   const router = useRouter();
+  const [randomState, setRandomState] = useState(false);
+
+  if (!randomState) {
+    const tryToGetUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (!user) {
+        router.push("/Login");
+      }
+    }
+
+    tryToGetUser();
+  }
+
+  useEffect(() => {
+    setRandomState(true);
+  }, [])
 
   useEffect(() => {
     const getUser = async () => {
@@ -74,5 +92,22 @@ function Profile() {
     </div>
   );
 }
+
+// export const getServerSideProps = async (ctx) => {
+//   // Create authenticated Supabase Client
+//   const supabase = createServerSupabaseClient(ctx)
+//   // Check if we have a session
+//   const {
+//     data: { session },
+//   } = await supabase.auth.getSession()
+
+//   if (!session)
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       },
+//     }
+// }
 
 export default Profile;
