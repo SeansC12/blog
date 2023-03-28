@@ -9,7 +9,7 @@ function Create() {
 
   return (
     <div>
-      <Editor data={blogData} onChange={setBlogData} holder="editorjs" />
+      <Editor data={blogData} onChange={setBlogData} holder="editorjs-container" />
       <div>Hello</div>
     </div>
   )
