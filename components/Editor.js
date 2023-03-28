@@ -31,7 +31,7 @@ function Editor({ data, onChange, holder }) {
   }, []);
 
 
-  return <div id={holder} />;
+  return <div id={holder} className="prose max-w-full" />;
 };
 
 export default Editor;

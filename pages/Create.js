@@ -8,7 +8,7 @@ function Create() {
   const [blogData, setBlogData] = useState();
 
   return (
-    <div>
+    <div className="bg-white">
       <Editor data={blogData} onChange={setBlogData} holder="editorjs-container" />
       <div>Hello</div>
     </div>
