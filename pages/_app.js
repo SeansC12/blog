@@ -3,7 +3,6 @@ import NavBar from "../components/NavBar";
 import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
-  const [callbackFunctionForBlog, setCallbackFunctionForBlog] = useState(() => () => { });
   return (
     <>
       {/* <UserProvider> */}
