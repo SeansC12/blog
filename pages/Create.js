@@ -55,22 +55,17 @@ function Create() {
           </motion.li>
         </ol>
       </LayoutGroup>
-      {/* <div className="bg-gradient-to-b from-[#0e141b] to-white h-20" /> */}
-      {/* <div className="flex items-center justify-center gap-5 bg-white">
-        <div className="text-black">Markup</div>
-        <div className="text-black">Preview</div>
-      </div> */}
-      {isEditingMode ?
-        <div className="bg-white pt-10 px-80">
+      <div className="bg-white pt-10 px-80 text-black flex items-center justify-center flex-col">
+        <div>Give your blog a title</div>
+        <input className="border-2 rounded border-gray-500 w-full mb-10" />
+        {isEditingMode ?
           <div className="container max-w-4xl">
             <Editor data={blogData} onChange={setBlogData} holder="editorjs-container" />
           </div>
-        </div>
-        :
-        <div className="bg-white pt-10 px-80">
+          :
           <EditorRenderer data={blogData} />
-        </div>
-      }
+        }
+      </div>
     </div>
   )
 }
