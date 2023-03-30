@@ -1,9 +1,9 @@
 import "../styles/globals.css";
 import NavBar from "../components/NavBar";
-import UserProvider from "../contexts/UserContext";
-import { supabase } from "../utils/supabase";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
+  const [callbackFunctionForBlog, setCallbackFunctionForBlog] = useState(() => () => { });
   return (
     <>
       {/* <UserProvider> */}

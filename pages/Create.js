@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, LayoutGroup } from "framer-motion";
+import { supabase } from "../utils/supabase";
+import { useRouter } from "next/router";
 const EditorRenderer = dynamic(() => import("../components/EditorRenderer"), {
   ssr: false
 });
@@ -12,6 +14,24 @@ const Editor = dynamic(() => import("../components/Editor"), {
 function Create() {
   const [blogData, setBlogData] = useState();
   const [isEditingMode, setIsEditingMode] = useState(true);
+  const [randomState, setRandomState] = useState(false);
+  const router = useRouter();
+
+  if (!randomState) {
+    const tryToGetUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (!user) {
+        router.push("/Login");
+      }
+    }
+
+    tryToGetUser();
+  }
+
+  useEffect(() => {
+    setRandomState(true);
+  }, [])
 
   return (
     <div>
