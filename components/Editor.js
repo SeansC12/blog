@@ -1,28 +1,32 @@
 import React, { memo, useEffect, useRef } from "react";
-import EditorJS, { OutputData } from "@editorjs/editorjs";
+import EditorJS from "@editorjs/editorjs";
 import { EDITOR_TOOLS } from "./EditorTools";
 
-function Editor({ data, onChange, holder }) {
-  //add a reference to editor
+function Editor({ data, onChange, holder, isReadOnly }) {
+  // Add a reference to editor
   const ref = useRef();
 
-  //initialize editorjs
+  // Initialize editorjs
   useEffect(() => {
-    //initialize editor if we don't have a reference
+    // Initialize editor if we don't have a reference
     if (!ref.current) {
       const editor = new EditorJS({
         holder: holder,
         tools: EDITOR_TOOLS,
+        readOnly: isReadOnly,
+        placeholder: "This is the start of something beautiful",
         data,
         async onChange(api, event) {
+          event.preventDefault();
           const data = await api.saver.save();
+          console.log(data);
           onChange(data);
         },
       });
       ref.current = editor;
     }
 
-    //add a return function handle cleanup
+    // Add a return function handle cleanup
     return () => {
       if (ref.current && ref.current.destroy) {
         ref.current.destroy();
@@ -34,4 +38,4 @@ function Editor({ data, onChange, holder }) {
   return <div id={holder} className="prose max-w-full" />;
 };
 
-export default Editor;
+export default memo(Editor);

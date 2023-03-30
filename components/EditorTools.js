@@ -1,8 +1,11 @@
 import Code from "@editorjs/code";
 import Header from "@editorjs/header";
 import Paragraph from "@editorjs/paragraph";
+import Quote from "@editorjs/quote";
+
 export const EDITOR_TOOLS = {
   code: Code,
   header: Header,
-  paragraph: Paragraph
+  paragraph: Paragraph,
+  quote: Quote,
 };
