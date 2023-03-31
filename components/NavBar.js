@@ -7,7 +7,7 @@ import useOutsideClickAlerter from "../hooks/useOutsideClickAlerter";
 import { supabase } from "../utils/supabase";
 import { useRouter } from "next/router";
 
-function NavBar({ callbackForBlog }) {
+function NavBar() {
   const isVisible = useScroll();
   // const [user] = useUser();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -72,9 +72,7 @@ function NavBar({ callbackForBlog }) {
                   </div>
                 </a>
                 :
-                <div onClick={callbackForBlog} className="rounded-md bg-green-400 py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
-                  Publish
-                </div>
+                null
               }
               <div onClick={() => setIsUserMenuOpen((curr) => !curr)}>
                 <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">

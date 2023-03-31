@@ -8,7 +8,7 @@ function EditorRenderer({ data }) {
   console.log(html)
   return (
     // It's important to add key={data.time} here to re-render based on the latest data.
-    <div className="prose max-w-full" key={data.time}>
+    <div className="prose max-w-full w-full" key={data.time}>
       {html.map((item, index) => {
         console.log(item);
         if (typeof item === "string") {
