@@ -46,7 +46,6 @@ function NavBar() {
         const { data } = await res.json();
         setUser(data);
       }
-      console.log(thing);
     }
 
     getUser();

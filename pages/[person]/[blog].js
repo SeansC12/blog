@@ -1,16 +1,18 @@
 import React from "react";
 import BlogCard from "../../components/BlogCard";
 import { query } from "../../lib/db";
+import EditorRenderer from "../../components/EditorRenderer";
 
-export default function Home({ data }) {
+export default function Home({ blog }) {
+  console.log(blog);
   return (
-    <div className="bg-[#0e141b]">
-      {data && data.map((blog, key) => {
-        return (
-          <div key={key}>
-            <BlogCard title={blog.blog_title} content={blog.blog} />
-          </div>);
-      })}
+    <div className="bg-white text-black flex items-center justify-center flex-col">
+      <div className="w-[80%] flex items-center justify-center mt-10 mb-7">
+        <div className="text-5xl font-bold">{blog.blog_title}</div>
+      </div>
+      <div className="w-[55%] flex items-center justify-center flex-col">
+        <EditorRenderer data={blog.blog} />
+      </div>
     </div>
   );
 }
@@ -36,7 +38,7 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
-        data: data,
+        blog: data[0],
       },
     };
 

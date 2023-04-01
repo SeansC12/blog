@@ -23,12 +23,18 @@ function Create() {
     const { data: { user } } = await supabase.auth.getUser();
 
     // Compute the url_name
-    const titleArray = title.split(" ").slice(4);
+    const titleArray = title.split(" ");
+    let slicedTitleArray = [];
+
+    if (titleArray.length < 4) {
+      slicedTitleArray = titleArray;
+    }
+    slicedTitleArray = title.split(" ").slice(0, 4);
     let finalURLName = "";
 
-    for (let i = 0; i < titleArray.length; i++) {
-      finalURLName += titleArray[i].toLowerCase();
-      if (i != titleArray.length - 1) {
+    for (let i = 0; i < slicedTitleArray.length; i++) {
+      finalURLName += slicedTitleArray[i].toLowerCase();
+      if (i != slicedTitleArray.length - 1) {
         finalURLName += "-"
       }
     }
@@ -44,6 +50,8 @@ function Create() {
         description: "Test 1"
       })
     })
+
+    router.push("/");
   }
 
   if (!randomState) {
