@@ -13,6 +13,7 @@ const Editor = dynamic(() => import("../components/Editor"), {
 
 function Create() {
   const [blogData, setBlogData] = useState();
+  const [blogTitle, setBlogTitle] = useState();
   const [isEditingMode, setIsEditingMode] = useState(true);
   const [randomState, setRandomState] = useState(false);
   const titleRef = useRef();
@@ -117,11 +118,11 @@ function Create() {
           </motion.li>
         </ol>
       </LayoutGroup>
-      <div className="bg-white pt-10 px-80 text-black flex items-center justify-center flex-col">
+      <div className="bg-white pt-10 px-80 text-black flex items-center justify-center flex-col w-full">
         {isEditingMode ?
           <div className="w-full">
             <div>Give your blog a title</div>
-            <input ref={titleRef} className="border-2 rounded border-gray-500 w-full mb-10" />
+            <input ref={titleRef} onChange={() => { setBlogTitle(titleRef.current.value) }} value={blogTitle} className="border-2 rounded border-gray-500 w-full mb-10" />
           </div> : <div className="w-full" />}
 
         {isEditingMode ?
@@ -129,7 +130,10 @@ function Create() {
             <Editor data={blogData} onChange={setBlogData} holder="editorjs-container" />
           </div>
           :
-          <EditorRenderer data={blogData} />
+          <div className="w-full">
+            <div className="text-5xl font-bold w-full">{titleRef.current.value}</div>
+            {blogData && <div className="w-full"><EditorRenderer data={blogData} /></div>}
+          </div>
         }
       </div>
     </div>
