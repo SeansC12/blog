@@ -1,6 +1,6 @@
 # EZ Blog
 
-![](https://github.com/SeansC12/blog/blob/main/public/logo.png)
+![Logo](https://github.com/SeansC12/blog/blob/main/public/logo.png)
 An open-source blog, made for learning purposes.
 
 ## Tech stack
