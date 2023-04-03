@@ -36,7 +36,7 @@ This blog supports the basic CRUD (still in development)
   - [x] Row-Level Security
   - [x] MySQL user store
 - [x] Able to update username
+- [x] Clean UI to see the blogs for each person
 - [ ] Blog search function
 - [ ] Filter by tags
-- [ ] Clean UI to see the blogs for each person
 - [ ] Add images to blogs
