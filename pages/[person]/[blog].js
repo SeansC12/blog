@@ -4,7 +4,6 @@ import { query } from "../../lib/db";
 import EditorRenderer from "../../components/EditorRenderer";
 
 export default function Home({ blog }) {
-  console.log(blog);
   return (
     <div className="bg-white text-black flex items-center justify-center flex-col">
       <div className="w-[80%] flex items-center justify-center mt-10 mb-7">

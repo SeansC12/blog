@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import useSound from "use-sound";
 
-function BlogCard({ title, description, personName, url }) {
+function BlogCard({ title, description, personName, url, personImage }) {
   const [isHoveringOverBlogSpace, setIsHoveringOverBlogSpace] = useState(false);
   const [isHoveringOverAuthorSpace, setIsHoveringOverAuthorSpace] =
     useState(false);
@@ -58,7 +58,7 @@ function BlogCard({ title, description, personName, url }) {
         onMouseEnter={() => setIsHoveringOverAuthorSpace(true)}
         onMouseLeave={() => setIsHoveringOverAuthorSpace(false)}
       >
-        <div className="w-7 aspect-square rounded-full bg-purple-500" />
+        <img src={personImage} className="w-7 aspect-square rounded-full" />
         <motion.div
           animate={isHoveringOverAuthorSpace ? "isHovering" : "isNotHovering"}
           variants={highlightedTextVariants}

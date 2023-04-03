@@ -11,13 +11,13 @@ export default function Home({ data, person }) {
         <h1 className="font-bold text-3xl">{person}</h1>
       </div>
       {data && data.map((blog, key) => {
-        console.log(blog.description);
         return (
           <div key={key}>
             <BlogCard
               title={blog.blog_title}
               description={blog.description}
-              personName={blog.name}
+              personName={person}
+              personImage={`https://ui-avatars.com/api/?name=${person && person}`}
               url={`http://localhost:3000/${person}/${blog.url_name}`}
             />
           </div>
@@ -50,8 +50,6 @@ export async function getServerSideProps(context) {
         };
       }
     }
-
-    console.log(data);
 
     return {
       props: {

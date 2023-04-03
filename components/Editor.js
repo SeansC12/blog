@@ -19,7 +19,6 @@ function Editor({ data, onChange, holder, isReadOnly }) {
         async onChange(api, event) {
           event.preventDefault();
           const data = await api.saver.save();
-          console.log(data);
           onChange(data);
         },
       });

@@ -28,7 +28,6 @@ export function user() {
         })
       })
       const userObject = await res.json();
-      console.log(userObject);
 
       if (isSubscribed) {
         setUser(userObject);

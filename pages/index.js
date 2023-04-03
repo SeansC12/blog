@@ -27,6 +27,7 @@ export default function Home({ data }) {
                 description={blog.description}
                 personName={blog.name}
                 url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
+                personImage={`https://ui-avatars.com/api/?name=${blog.name && blog.name}`}
               />
             );
           })}
