@@ -1,16 +1,22 @@
 import React from "react";
 import BlogCard from "../../components/BlogCard";
 import { query } from "../../lib/db";
+import Image from "next/image";
 
 export default function Home({ data, person }) {
   return (
-    <div className="bg-[#0e141b]">
+    <div className="px-96">
+      <div className="w-full flex items-center justify-center flex-col gap-5">
+        <Image src={`https://ui-avatars.com/api/?name=${person && person}`} width={150} height={150} className="aspect-square rounded-full" />
+        <h1 className="font-bold text-3xl">{person}</h1>
+      </div>
       {data && data.map((blog, key) => {
+        console.log(blog.description);
         return (
           <div key={key}>
             <BlogCard
               title={blog.blog_title}
-              content={blog.blog}
+              description={blog.description}
               personName={blog.name}
               url={`http://localhost:3000/${person}/${blog.url_name}`}
             />
@@ -28,7 +34,7 @@ export async function getServerSideProps(context) {
   try {
     // Fetch the blogs
     const sqlQuery =
-      "SELECT blogs.blog, blogs.blog_title, blogs.url_name, users.name FROM blogs INNER JOIN users ON users.person_id = blogs.person_id WHERE users.name = ?;";
+      "SELECT blogs.blog, blogs.blog_title, blogs.url_name, blogs.description, users.name FROM blogs INNER JOIN users ON users.person_id = blogs.person_id WHERE users.name = ?;";
     const valueParams = [personName];
 
     const data = await query({ query: sqlQuery, values: valueParams });
