@@ -74,7 +74,7 @@ function Create() {
   }, [])
 
   return (
-    <div>
+    <div className="h-full">
       {isPublishedMode ?
         <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
           <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -106,7 +106,7 @@ function Create() {
           </div>
         </div> : null}
 
-      <div className="flex justify-end items-center">
+      <div className="flex justify-end items-center w-full">
         <div onClick={() => setIsPublishedMode(true)} className="rounded-md bg-green-400 py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
           Publish
         </div>
@@ -126,7 +126,6 @@ function Create() {
             {isEditingMode && (
               <motion.div
                 className={`h-1 rounded-full w-10/12 m-auto`}
-                // style={{ backgroundColor: course.color }}
                 layoutId="underline"
               ></motion.div>
             )}
@@ -144,14 +143,13 @@ function Create() {
             {!isEditingMode && (
               <motion.div
                 className={`h-1 rounded-full w-10/12 m-auto`}
-                // style={{ backgroundColor: course.color }}
                 layoutId="underline"
               ></motion.div>
             )}
           </motion.li>
         </ol>
       </LayoutGroup>
-      <div className="bg-white pt-10 px-80 text-black flex items-center justify-center flex-col w-full">
+      <div className="bg-white h-full pt-10 px-80 text-black flex items-center justify-start flex-col w-full">
         {isEditingMode ?
           <div className="w-full">
             <div>Give your blog a title</div>

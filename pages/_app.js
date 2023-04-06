@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {/* <UserProvider> */}
-      <div className="bg-[#0e141b] text-white">
+      <div className="bg-[#0e141b] h-[100vh] text-white">
         <NavBar />
         <Component {...pageProps} />
       </div>
