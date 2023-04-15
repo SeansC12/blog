@@ -1,40 +1,26 @@
-import React, { memo, useEffect, useRef } from "react";
-import EditorJS from "@editorjs/editorjs";
-import { EDITOR_TOOLS } from "./EditorTools";
+import React, { useRef, memo } from "react"
+import { Editor as TinyEditor } from '@tinymce/tinymce-react';
 
-function Editor({ data, onChange, holder, isReadOnly }) {
-  // Add a reference to editor
-  const ref = useRef();
+function Editor({ setBlogData, blogData }) {
+  const editorRef = useRef(null);
 
-  // Initialize editorjs
-  useEffect(() => {
-    // Initialize editor if we don't have a reference
-    if (!ref.current) {
-      const editor = new EditorJS({
-        holder: holder,
-        tools: EDITOR_TOOLS,
-        readOnly: isReadOnly,
-        placeholder: "This is the start of something beautiful",
-        data,
-        async onChange(api, event) {
-          event.preventDefault();
-          const data = await api.saver.save();
-          onChange(data);
-        },
-      });
-      ref.current = editor;
-    }
-
-    // Add a return function handle cleanup
-    return () => {
-      if (ref.current && ref.current.destroy) {
-        ref.current.destroy();
-      }
-    };
-  }, []);
-
-
-  return <div id={holder} className="prose max-w-full" />;
-};
+  return (
+    <div>
+      <TinyEditor
+        onInit={(evt, editor) => editorRef.current = editor}
+        // initialValue="<p>Why this no work</p>"
+        initialValue={blogData}
+        plugins="code advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount"
+        toolbar="undo redo formatselect h1 h2 h3 bold italic underline code backcolor alignleft aligncenter alignright alignjustify bullist numlist outdent indent removeformat help"
+        onEditorChange={() => setBlogData(editorRef.current.getContent())}
+        init={{
+          height: 500,
+          menubar: false,
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        }}
+      />
+    </div>
+  );
+}
 
 export default memo(Editor);

@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
 import { motion, LayoutGroup } from "framer-motion";
 import { supabase } from "../utils/supabase";
 import { useRouter } from "next/router";
-const EditorRenderer = dynamic(() => import("../components/EditorRenderer"), {
-  ssr: false
-});
-
-const Editor = dynamic(() => import("../components/Editor"), {
-  ssr: false
-});
+import Editor from "../components/Editor";
+import EditorRenderer from "../components/EditorRenderer";
 
 function Create() {
   const [blogData, setBlogData] = useState();
@@ -20,6 +14,12 @@ function Create() {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const router = useRouter();
+  const [tempBlogData, setTempBlogData] = useState();
+
+  useEffect(() => {
+    setTempBlogData(blogData)
+    console.log(tempBlogData)
+  }, [isEditingMode])
 
   async function publish(title, blog) {
     // Get the user
@@ -158,11 +158,12 @@ function Create() {
 
         {isEditingMode ?
           <div className="container max-w-4xl">
-            <Editor data={blogData} onChange={setBlogData} holder="editorjs-container" />
+            {/* <Editor data={blogData} onChange={setBlogData} holder="editorjs-container" /> */}
+            <Editor isEditingMode={isEditingMode} setBlogData={setBlogData} blogData={tempBlogData} />
           </div>
           :
           <div className="w-full">
-            <div className="text-5xl font-bold w-full">{titleRef.current.value}</div>
+            <div className="text-5xl font-bold w-full">{titleRef.current && titleRef.current.value}</div>
             {blogData && <div className="w-full"><EditorRenderer data={blogData} /></div>}
           </div>
         }
