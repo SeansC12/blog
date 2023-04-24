@@ -35,7 +35,7 @@ export default function Home({ data }) {
         <div className="col-start-2 col-span-1">
           <div className="flex flex-col items-start justify-center">
             <div className="font-montserrat text-[#e60067] font-semibold tracking-widest text-lg ml-1 mb-5">
-              FILTER BY TAGS
+              [COMING] FILTER BY TAGS
             </div>
             <div className="flex gap-2 flex-wrap">
               {temporaryTags.map((tagName, key) => {
@@ -46,7 +46,7 @@ export default function Home({ data }) {
               })}
             </div>
             <div className="font-montserrat text-[#e60067] font-semibold tracking-widest text-lg ml-1 mt-24 mb-5">
-              POPULAR
+              RECENT
             </div>
             <div className="flex flex-col gap-8">
               {data.map((blog) => {
