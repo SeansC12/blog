@@ -63,7 +63,7 @@ function Profile() {
 
   return (
     <div className="flex items-center justify-center flex-col">
-      <div className="px-10 flex justify-center items-center text-white">
+      <div className="px-10 flex justify-center items-center text-black">
         <div className="flex gap-5 items-center justify-center">
           <img src={`https://ui-avatars.com/api/?name=${user && user.name}`} className="rounded-full w-24 aspect-square" />
           <div className="flex flex-col">
@@ -72,7 +72,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <button onClick={handleSubmit} className={`mt-10 py-2 px-3 ${changesMade ? "bg-red-500" : "bg-slate-400"} text-white w-fit text-sm font-semibold rounded-md shadow focus:outline-none`}>Save changes</button>
+      <button onClick={handleSubmit} className={`mt-10 py-2 px-3 ${changesMade ? "bg-red-500" : "bg-slate-400"} text-black w-fit text-sm font-semibold rounded-md shadow focus:outline-none`}>Save changes</button>
     </div>
   );
 }

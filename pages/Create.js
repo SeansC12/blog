@@ -83,7 +83,7 @@ function Create() {
                   </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button onClick={() => publish(blogTitle, blogData)} type="button" class="inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 sm:ml-3 sm:w-auto">Publish</button>
+                  <button onClick={() => publish(blogTitle, blogData)} type="button" class="inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-green-400 sm:ml-3 sm:w-auto">Publish</button>
                   <button onClick={() => setIsPublishedMode(false)} type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
                 </div>
               </div>
@@ -104,7 +104,7 @@ function Create() {
             }}
             className="text-center sm:text-xl w-fit cursor-pointer text-[5vw]"
             animate={{
-              color: isEditingMode ? "white" : "gray",
+              color: isEditingMode ? "black" : "gray",
             }}
           >
             Markup
@@ -121,7 +121,7 @@ function Create() {
             }}
             className="text-center sm:text-xl w-fit cursor-pointer text-[5vw]"
             animate={{
-              color: !isEditingMode ? "white" : "gray",
+              color: !isEditingMode ? "black" : "gray",
             }}
           >
             Preview
@@ -148,8 +148,7 @@ function Create() {
           </div>
           :
           <div className="w-full">
-            <div className="text-5xl font-bold w-full">{blogTitle}</div>
-            {blogData && <div className="w-full"><EditorRenderer data={blogData} /></div>}
+            {blogData && <div className="w-full"><EditorRenderer title={blogTitle} blog={blogData} /></div>}
           </div>
         }
       </div>

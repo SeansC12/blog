@@ -53,7 +53,7 @@ function NavBar() {
 
   return (
     <div
-      className={`sticky z-50 bg-[#0e141b] text-white border-b-[1px] mb-4 border-b-gray-800 h-16 top-0 flex items-center justify-between ${isVisible ? "top-0" : "-top-16"
+      className={`sticky z-50 bg-white text-black border-b-[1px] mb-4 border-b-white shadow-md h-16 top-0 flex items-center justify-between ${isVisible ? "top-0" : "-top-16"
         } transition-all duration-500`}
     >
       <a href="/">
@@ -74,7 +74,7 @@ function NavBar() {
                 null
               }
               <div onClick={() => setIsUserMenuOpen((curr) => !curr)}>
-                <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Open user menu</span>
                   <img className="h-8 w-8 rounded-full" src={`https://ui-avatars.com/api/?name=${user && user.name}`} alt="" />
                 </button>

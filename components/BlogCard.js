@@ -17,7 +17,7 @@ function BlogCard({ title, description, personName, url, personImage }) {
       },
     },
     isNotHovering: {
-      color: "#FFFFFF",
+      color: "#000",
       transition: {
         duration: 0.3,
       },
@@ -77,13 +77,13 @@ function BlogCard({ title, description, personName, url, personImage }) {
           initial={false}
           animate={isHoveringOverBlogSpace ? "isHovering" : "isNotHovering"}
           variants={highlightedTextVariants}
-          className="text-2xl font-bold my-3 font-lato text-white"
+          className="text-2xl font-bold my-3 font-lato text-black"
         >
           {title}
         </motion.h1>
 
         <div className="flex flex-row justify-between">
-          <h2 className="text-base text-white mt-2 mb-6">{description}</h2>
+          <h2 className="text-base text-black mt-2 mb-6">{description}</h2>
           <motion.div
             className={`flex items-center justify-center mr-10 ${isHoveringOverBlogSpace ? "animate-pulse" : "animate-none"
               }`}
@@ -103,7 +103,7 @@ function BlogCard({ title, description, personName, url, personImage }) {
         </div>
 
         <div
-          className="font-lato font-bold text-white grow h-full"
+          className="font-lato font-bold text-black grow h-full"
         >
           Read More
         </div>

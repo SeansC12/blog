@@ -6,11 +6,8 @@ import EditorRenderer from "../../components/EditorRenderer";
 export default function Home({ blog }) {
   return (
     <div className="bg-white text-black flex items-center justify-center flex-col">
-      <div className="w-[80%] flex items-center justify-center mt-10 mb-7">
-        <div className="text-5xl font-bold">{blog.blog_title}</div>
-      </div>
       <div className="w-[55%] flex items-center justify-center flex-col">
-        <EditorRenderer data={blog.blog} />
+        <EditorRenderer title={blog.blog_title} blog={blog.blog} />
       </div>
     </div>
   );

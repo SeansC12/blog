@@ -1,9 +1,14 @@
 import React from "react";
 
 
-function EditorRenderer({ data }) {
+function EditorRenderer({ title, blog }) {
   return (
-    <div className="w-full" dangerouslySetInnerHTML={{ __html: data }}></div>
+    <div className="w-full">
+      <h1 className="font-bold text-4xl my-5">{title}</h1>
+      <div className="no-tailwindcss-base">
+        <div dangerouslySetInnerHTML={{ __html: blog }}></div>
+      </div>
+    </div>
   );
 };
 

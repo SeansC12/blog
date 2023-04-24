@@ -14,10 +14,10 @@ export default function Home({ data }) {
   }, [activeTags]);
 
   return (
-    <div className="px-40 bg-[#0e141b] text-white">
+    <div className="px-40 bg-white text-black">
       <div className="grid grid-cols-[70%_30%] grid-rows-1">
         <div className="col-start-1 col-span-1">
-          <div className="ml-2 font-montserrat text-orange-400 font-semibold tracking-widest text-lg">
+          <div className="ml-2 font-montserrat text-[#e60067] font-semibold tracking-widest text-lg">
             TRENDING
           </div>
           {data.map((blog) => {
@@ -34,7 +34,7 @@ export default function Home({ data }) {
         </div>
         <div className="col-start-2 col-span-1">
           <div className="flex flex-col items-start justify-center">
-            <div className="font-montserrat text-orange-400 font-semibold tracking-widest text-lg ml-1 mb-5">
+            <div className="font-montserrat text-[#e60067] font-semibold tracking-widest text-lg ml-1 mb-5">
               FILTER BY TAGS
             </div>
             <div className="flex gap-2 flex-wrap">
@@ -45,7 +45,7 @@ export default function Home({ data }) {
                 );
               })}
             </div>
-            <div className="font-montserrat text-orange-400 font-semibold tracking-widest text-lg ml-1 mt-24 mb-5">
+            <div className="font-montserrat text-[#e60067] font-semibold tracking-widest text-lg ml-1 mt-24 mb-5">
               POPULAR
             </div>
             <div className="flex flex-col gap-8">

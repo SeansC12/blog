@@ -5,16 +5,44 @@
 @tailwind utilities;
 
 @layer base {
-  h1 {
-    @apply text-2xl font-bold;
+  .no-tailwindcss-base h1 {
+    font-size: revert;
+    font-weight: revert;
+    margin: revert;
   }
-  h2 {
-    @apply text-xl font-semibold;
+  .no-tailwindcss-base h2 {
+    font-size: revert;
+    font-weight: revert;
+    margin: revert;
   }
-  h3 {
-    @apply text-lg font-medium;
+  .no-tailwindcss-base h3 {
+    font-size: revert;
+    font-weight: revert;
+    margin: revert;
   }
-  ul {
-    @apply list-disc;
+  .no-tailwindcss-base h4 {
+    font-size: revert;
+    font-weight: revert;
+    margin: revert;
+  }
+  .no-tailwindcss-base h5 {
+    font-size: revert;
+    font-weight: revert;
+    margin: revert;
+  }
+  .no-tailwindcss-base h6 {
+    font-size: revert;
+    font-weight: revert;
+    margin: revert;
+  }
+  .no-tailwindcss-base ol {
+    list-style: revert;
+    margin: revert;
+    padding: revert;
+  }
+  .no-tailwindcss-base ul {
+    list-style: revert;
+    margin: revert;
+    padding: revert;
   }
 }

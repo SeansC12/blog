@@ -14,8 +14,8 @@ function Tag({ tagName, key, activeTags, setActiveTags }) {
         }
       }}
       className={`select-none transition-all ease-in hover:scale-105 rounded-md h-fit w-fit inline-block text-sm px-3 py-[0.375rem] cursor-pointer font-medium ${activeTags.includes(tagName)
-        ? "bg-[#d4af37] text-black shadow-md"
-        : "bg-slate-700"
+        ? "bg-[#ffd037] text-black shadow-md"
+        : "bg-[#63bce9]"
         }`}
     >
       {tagName}
