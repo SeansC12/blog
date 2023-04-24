@@ -72,7 +72,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <button onClick={handleSubmit} className={`mt-10 py-2 px-3 ${changesMade ? "bg-red-500" : "bg-slate-400"} text-black w-fit text-sm font-semibold rounded-md shadow focus:outline-none`}>Save changes</button>
+      <button onClick={handleSubmit} className={`mt-10 py-2 px-3 ${changesMade ? "bg-red-500 hover:bg-red-400" : "bg-slate-400"} text-black w-fit text-sm font-semibold rounded-md shadow focus:outline-none`}>Save changes</button>
     </div>
   );
 }

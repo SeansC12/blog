@@ -1,10 +1,10 @@
 import React from "react";
 
-function PopularReads({ title, url, personName }) {
+function PopularReads({ title, url, personName, personImage }) {
   return (
     <div className="w-full">
       <a className="flex flex-row items-center justify-start gap-2 mb-3" href={`/${personName}`}>
-        <div className="bg-pink-400 rounded-full w-5 aspect-square" />
+        <img src={personImage} className="w-7 aspect-square rounded-full" />
         <div className="text-black font-lato text-sm transition-all hover:text-[#617bff]">
           {personName}
         </div>

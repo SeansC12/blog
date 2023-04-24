@@ -51,7 +51,12 @@ export default function Home({ data }) {
             <div className="flex flex-col gap-8">
               {data.map((blog) => {
                 return (
-                  <PopularReads title={blog.blog_title} url={`http://localhost:3000/${blog.name}/${blog.url_name}`} personName={blog.name} />
+                  <PopularReads
+                    title={blog.blog_title}
+                    url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
+                    personName={blog.name}
+                    personImage={`https://ui-avatars.com/api/?name=${blog.name && blog.name}`}
+                  />
                 )
               })}
             </div>
