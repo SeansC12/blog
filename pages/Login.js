@@ -18,8 +18,6 @@ function Login() {
       password: password,
     });
 
-    console.log(error.message)
-
     if (error) {
       setError(error.message);
       return;
