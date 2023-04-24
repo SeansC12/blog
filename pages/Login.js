@@ -2,18 +2,17 @@ import React, { useRef, useState } from 'react'
 import logo from "./../public/logo.png";
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useUser } from '../contexts/UserContext';
-import { supabase } from '../utils/supabase';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 function Login() {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const router = useRouter();
   const [error, setError] = useState();
-  // const [user, setUser] = useUser();
+  const supabaseClient = useSupabaseClient();
 
   async function loginHandler(email, password) {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
       email: email,
       password: password,
     });

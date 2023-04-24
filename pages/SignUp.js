@@ -2,8 +2,7 @@ import React, { useRef, useState } from 'react'
 import logo from "./../public/logo.png";
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useUser } from '../contexts/UserContext';
-import { supabase } from '../utils/supabase';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 
 function Login() {
@@ -12,19 +11,21 @@ function Login() {
   const passwordConfirmRef = useRef();
   const router = useRouter();
   const [error, setError] = useState();
-  // const [user, setUser] = useUser();
+  const supabaseClient = useSupabaseClient();
 
   async function signUpHandler(email, password, confirmPassword) {
     // Check if password equals the confirm password
     if (password !== confirmPassword) {
-      setError(data.message);
+      setError("Passwords do not match");
       return;
     }
 
-    const { data, error } = await supabase.auth.signUp({
+    const { data: { user }, error } = await supabaseClient.auth.signUp({
       email: email,
       password: password,
     });
+
+    console.log(user)
 
     if (error) {
       setError(error);
@@ -35,7 +36,7 @@ function Login() {
     await fetch("/api/signup", {
       method: "PATCH",
       body: JSON.stringify({
-        user: data
+        user: user
       })
     })
 

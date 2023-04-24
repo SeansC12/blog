@@ -1,38 +1,22 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
-import { useUser } from '../contexts/UserContext';
 import { supabase } from '../utils/supabase';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 function Profile() {
-  // const [user] = useUser();
   const [changesMade, setChangesMade] = useState(false);
   const nameRef = useRef();
   const [user, setUser] = useState();
   const [supabaseUser, setSupabaseUser] = useState();
   const router = useRouter();
-  const [randomState, setRandomState] = useState(false);
 
-  if (!randomState) {
-    const tryToGetUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-
-      if (!user) {
-        router.push("/Login");
-      }
-    }
-
-    tryToGetUser();
-  }
-
-  useEffect(() => {
-    setRandomState(true);
-  }, [])
+  const supabaseClient = useSupabaseClient();
 
   useEffect(() => {
     const getUser = async () => {
       // Supabase user
-      const { data: { user } } = await supabase.auth.getUser();
+      const { data: { user } } = await supabaseClient.auth.getUser();
       setSupabaseUser(user);
 
       if (user) {
@@ -93,21 +77,24 @@ function Profile() {
   );
 }
 
-// export const getServerSideProps = async (ctx) => {
-//   // Create authenticated Supabase Client
-//   const supabase = createServerSupabaseClient(ctx)
-//   // Check if we have a session
-//   const {
-//     data: { session },
-//   } = await supabase.auth.getSession()
+export const getServerSideProps = async (ctx) => {
+  // Create authenticated Supabase Client
+  const supabase = createServerSupabaseClient(ctx)
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
 
-//   if (!session)
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false,
-//       },
-//     }
-// }
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/Login',
+        permanent: false,
+      },
+    }
+  }
+
+  return { props: {} }
+}
 
 export default Profile;

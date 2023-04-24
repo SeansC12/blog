@@ -1,38 +1,24 @@
 import React, { useRef, useEffect, useState } from "react";
 import useScroll from "../hooks/useScroll";
-import { useUser } from "../contexts/UserContext";
 import Image from "next/image";
 import logo from "./../public/logo.png";
 import useOutsideClickAlerter from "../hooks/useOutsideClickAlerter";
-import { supabase } from "../utils/supabase";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 
 function NavBar() {
   const isVisible = useScroll();
-  // const [user] = useUser();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const userSettingsRef = useRef();
   const [user, setUser] = useState();
   const router = useRouter();
-
-  useOutsideClickAlerter(() => {
-    setIsUserMenuOpen(false)
-  }, userSettingsRef);
-
-  const logout = async () => {
-    const { error } = await supabase.auth.signOut();
-
-    if (error) {
-      throw new Error(error);
-    }
-
-    router.push("/");
-  }
+  const supabaseClient = useSupabaseClient();
 
   useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      const thing = await supabase.auth.getUser();
+      const { data: { user } } = await supabaseClient.auth.getUser();
+
+      console.log(user)
 
       if (user) {
         // Get user from my own custom MySQL database
@@ -50,6 +36,20 @@ function NavBar() {
 
     getUser();
   }, [])
+
+  useOutsideClickAlerter(() => {
+    setIsUserMenuOpen(false)
+  }, userSettingsRef);
+
+  const logout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+      throw new Error(error);
+    }
+
+    router.push("/");
+  }
 
   return (
     <div
@@ -81,7 +81,7 @@ function NavBar() {
               </div>
               {isUserMenuOpen ?
 
-                <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white overflow-hidden shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                <div className="absolute top-8 right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white overflow-hidden shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                   <a href="/Profile" className="block px-4 pb-2 pt-3 text-sm text-gray-700 hover:bg-slate-200" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
 
                   {/* <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-200" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a> */}
