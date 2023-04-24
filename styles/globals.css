@@ -45,4 +45,12 @@
     margin: revert;
     padding: revert;
   }
+  .no-tailwindcss-base img {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  .no-tailwindcss-base a {
+    text-decoration: underline;
+  }
 }

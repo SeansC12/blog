@@ -3,7 +3,7 @@ import useScroll from "../hooks/useScroll";
 import Image from "next/image";
 import logo from "./../public/logo.png";
 import useOutsideClickAlerter from "../hooks/useOutsideClickAlerter";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 
 function NavBar() {
@@ -57,7 +57,7 @@ function NavBar() {
         } transition-all duration-500`}
     >
       <a href="/">
-        <Image src={logo} className="w-12 ml-5" alt="logo" />
+        <Image src={logo} className="w-12 ml-5 rounded-lg" alt="logo" />
       </a>
       {user ?
         <div className="hidden md:block mr-5" ref={userSettingsRef}>
