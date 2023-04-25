@@ -142,7 +142,7 @@ function Create() {
           </div> : <div className="w-full" />}
 
         {isEditingMode ?
-          <div className="container max-w-4xl">
+          <div>
             {/* <Editor data={blogData} onChange={setBlogData} holder="editorjs-container" /> */}
             <Editor isEditingMode={isEditingMode} setBlogData={setBlogData} blogData={tempBlogData} />
           </div>
