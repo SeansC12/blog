@@ -10,7 +10,7 @@ function id({ data }) {
   })
 
   return (
-    <div>
+    <div className="w-full px-10 flex items-center justify-center">
       <Editor setBlogData={setBlogData} blogData={blogData} />
     </div>
   )

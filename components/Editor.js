@@ -5,7 +5,7 @@ function Editor({ setBlogData, blogData }) {
   const editorRef = useRef(null);
 
   return (
-    <div>
+    <div className="w-full">
       <TinyEditor
         onInit={(evt, editor) => editorRef.current = editor}
         // initialValue="<p>Why this no work</p>"
