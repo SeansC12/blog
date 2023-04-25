@@ -66,13 +66,18 @@ function NavBar() {
             <div className="relative ml-3 flex flex-row">
               {window.location.href !== "http://localhost:3000/Create" ?
                 <a href="/Create">
-                  <div className="rounded-md bg-[#43c5f4] py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
+                  <div className="rounded-md bg-[#20ff63] py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
                     Create
                   </div>
                 </a>
                 :
                 null
               }
+              <a href="/edit">
+                <div className="rounded-md bg-[#43c5f4] py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
+                  My blogs
+                </div>
+              </a>
               <div onClick={() => setIsUserMenuOpen((curr) => !curr)}>
                 <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Open user menu</span>
