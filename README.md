@@ -37,6 +37,6 @@ This blog supports the basic CRUD (still in development)
   - [x] MySQL user store
 - [x] Able to update username
 - [x] Clean UI to see the blogs for each person
-- [x] Add images to blogs (kinda)
+- [x] Add images to blogs
 - [ ] Blog search function
 - [ ] Filter by tags
