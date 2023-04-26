@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import useSound from "use-sound";
+import Link from "next/link";
 
 function BlogCard({ title, description, personName, url, personImage }) {
   const [isHoveringOverBlogSpace, setIsHoveringOverBlogSpace] = useState(false);
@@ -52,7 +53,7 @@ function BlogCard({ title, description, personName, url, personImage }) {
   return (
     <div className="mb-5 py-6 px-2 font-lato w-full">
       {/* Author who published article */}
-      <a
+      <Link
         href={`http://localhost:3000/${personName}`}
         className="flex flex-row gap-3 w-fit"
         onMouseEnter={() => setIsHoveringOverAuthorSpace(true)}
@@ -65,9 +66,9 @@ function BlogCard({ title, description, personName, url, personImage }) {
         >
           {personName}
         </motion.div>
-      </a>
+      </Link>
 
-      <a
+      <Link
         className="flex flex-col h-full"
         onMouseEnter={() => setIsHoveringOverBlogSpace(true)}
         onMouseLeave={() => setIsHoveringOverBlogSpace(false)}
@@ -107,7 +108,7 @@ function BlogCard({ title, description, personName, url, personImage }) {
         >
           Read More
         </div>
-      </a>
+      </Link>
     </div>
   );
 }

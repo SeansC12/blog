@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import ErrorBanner from '../components/ErrorBanner';
+import Link from "next/link";
 
 function Login() {
   const usernameRef = useRef();
@@ -46,10 +47,10 @@ function Login() {
       {error ?
         <ErrorBanner errorMessage={error} />
         : null}
-      <a className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-black">
+      <Link className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-black">
         <Image className="w-12 aspect-square rounded-lg mr-2" src={logo} alt="logo" />
         yoooo
-      </a>
+      </Link>
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
