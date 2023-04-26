@@ -9,7 +9,7 @@ function index({ data }) {
       <div className="font-bold text-4xl">My blogs</div>
       {data.map((blog, key) => {
         return (
-          <div key={key}>
+          <div className="w-full" key={key}>
             <EditBlogCard blogTitle={blog.blog_title} blogDescription={blog.description} blogID={blog.blog_id} />
           </div>
         )

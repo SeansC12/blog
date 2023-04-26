@@ -57,6 +57,17 @@ function id({ data }) {
     router.push("/")
   }
 
+  async function deleteBlog(blogID) {
+    await fetch("/api/delete", {
+      method: "DELETE",
+      body: JSON.stringify({
+        blog_id: blogID
+      })
+    })
+
+    router.push("/")
+  }
+
   useEffect(() => {
     setTempBlogData(blogData)
   }, [isEditingMode])
@@ -66,6 +77,9 @@ function id({ data }) {
       <div className="flex justify-end items-center w-full sticky top-0">
         <div onClick={() => update(blogTitle, blogDescription, blogData)} className="rounded-md bg-green-400 py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
           Update
+        </div>
+        <div onClick={() => deleteBlog(data.blog_id)} className="rounded-md bg-red-400 py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
+          Delete
         </div>
       </div>
       <LayoutGroup>
@@ -137,7 +151,7 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
   console.log(id)
 
-  const sqlQuery = "SELECT blog_title, blog, description FROM blogs WHERE blog_id = ?";
+  const sqlQuery = "SELECT blog_id, blog_title, blog, description FROM blogs WHERE blog_id = ?";
   const valueParams = [id];
 
   let data;
