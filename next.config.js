@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["ui-avatars.com"]
+    domains: ["ui-avatars.com"],
+    unoptimized: true,
   },
   webpack: (config, options) => {
     config.module.rules.push({
