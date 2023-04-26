@@ -7,7 +7,7 @@ import { LayoutGroup } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
-function id({ data }) {
+function ID({ data }) {
   const supabaseClient = useSupabaseClient();
 
   const [blogData, setBlogData] = useState(data.blog);
@@ -227,4 +227,4 @@ export async function getServerSideProps(context) {
 
 }
 
-export default id
+export default ID

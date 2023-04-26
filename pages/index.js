@@ -20,15 +20,17 @@ export default function Home({ data }) {
           <div className="ml-2 font-montserrat text-[#e60067] font-semibold tracking-widest text-lg">
             TRENDING
           </div>
-          {data.map((blog) => {
+          {data.map((blog, key) => {
             return (
-              <BlogCard
-                title={blog.blog_title}
-                description={blog.description}
-                personName={blog.name}
-                url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
-                personImage={`https://ui-avatars.com/api/?name=${blog.name && blog.name}`}
-              />
+              <div key={key}>
+                <BlogCard
+                  title={blog.blog_title}
+                  description={blog.description}
+                  personName={blog.name}
+                  url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
+                  personImage={`https://ui-avatars.com/api/?name=${blog.name && blog.name}`}
+                />
+              </div>
             );
           })}
         </div>
@@ -41,7 +43,9 @@ export default function Home({ data }) {
               {temporaryTags.map((tagName, key) => {
                 // Code for each category tag to filter by
                 return (
-                  <Tag tagName={tagName} key={key} activeTags={activeTags} setActiveTags={setActiveTags} />
+                  <div key={key}>
+                    <Tag tagName={tagName} key={key} activeTags={activeTags} setActiveTags={setActiveTags} />
+                  </div>
                 );
               })}
             </div>
@@ -49,14 +53,16 @@ export default function Home({ data }) {
               RECENT
             </div>
             <div className="flex flex-col gap-8">
-              {data.map((blog) => {
+              {data.map((blog, key) => {
                 return (
-                  <PopularReads
-                    title={blog.blog_title}
-                    url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
-                    personName={blog.name}
-                    personImage={`https://ui-avatars.com/api/?name=${blog.name && blog.name}`}
-                  />
+                  <div key={key}>
+                    <PopularReads
+                      title={blog.blog_title}
+                      url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
+                      personName={blog.name}
+                      personImage={`https://ui-avatars.com/api/?name=${blog.name && blog.name}`}
+                    />
+                  </div>
                 )
               })}
             </div>
