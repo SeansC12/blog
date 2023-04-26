@@ -25,7 +25,7 @@ This blog supports the basic CRUD (still in development)
 
 - [x] Create
 - [x] Read
-- [ ] Update
+- [x] Update
 - [ ] Delete
 
 ### Miscellaneous
