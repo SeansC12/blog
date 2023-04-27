@@ -54,7 +54,7 @@ function BlogCard({ title, description, personName, url, personImage }) {
     <div className="mb-5 py-6 px-2 font-lato w-full">
       {/* Author who published article */}
       <Link
-        href={`http://localhost:3000/${personName}`}
+        href={`/${personName}`}
         className="flex flex-row gap-3 w-fit"
         onMouseEnter={() => setIsHoveringOverAuthorSpace(true)}
         onMouseLeave={() => setIsHoveringOverAuthorSpace(false)}

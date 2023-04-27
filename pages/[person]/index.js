@@ -18,7 +18,7 @@ export default function Home({ data, person }) {
               description={blog.description}
               personName={person}
               personImage={`https://ui-avatars.com/api/?name=${person && person}`}
-              url={`http://localhost:3000/${person}/${blog.url_name}`}
+              url={`/${person}/${blog.url_name}`}
             />
           </div>
         );

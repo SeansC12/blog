@@ -27,7 +27,7 @@ export default function Home({ data }) {
                   title={blog.blog_title}
                   description={blog.description}
                   personName={blog.name}
-                  url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
+                  url={`/${blog.name}/${blog.url_name}`}
                   personImage={`https://ui-avatars.com/api/?name=${blog.name && blog.name}`}
                 />
               </div>
@@ -58,7 +58,7 @@ export default function Home({ data }) {
                   <div key={key}>
                     <PopularReads
                       title={blog.blog_title}
-                      url={`http://localhost:3000/${blog.name}/${blog.url_name}`}
+                      url={`/${blog.name}/${blog.url_name}`}
                       personName={blog.name}
                       personImage={`https://ui-avatars.com/api/?name=${blog.name && blog.name}`}
                     />
