@@ -18,6 +18,17 @@ function Create() {
   const [tempBlogData, setTempBlogData] = useState();
   const supabaseClient = useSupabaseClient();
 
+  const [isThereUnsavedChanges, setIsThereUnsavedChanges] = useState(false)
+
+  useEffect(() => {
+    console.log(isThereUnsavedChanges)
+    if (blogTitle || blogData) {
+      setIsThereUnsavedChanges(true);
+    } else {
+      setIsThereUnsavedChanges(false);
+    }
+  })
+
   async function publish(title, blog) {
     // Get the user
     const { data: { user } } = await supabaseClient.auth.getUser();
@@ -39,6 +50,8 @@ function Create() {
       }
     }
 
+    finalURLName = encodeURIComponent(finalURLName);
+
     await fetch("/api/publish", {
       method: "POST",
       body: JSON.stringify({
@@ -51,6 +64,8 @@ function Create() {
       })
     })
 
+    setIsThereUnsavedChanges(false);
+
     router.push("/");
   }
 
@@ -60,14 +75,14 @@ function Create() {
 
   useEffect(() => {
     const warningText =
-      'You have unsaved changes - are you sure you wish to leave this page?';
+      'You may have unsaved changes. Changes will be lost.';
     const handleWindowClose = (e) => {
-      // if (!unsavedChanges) return;
+      if (!isThereUnsavedChanges) return;
       e.preventDefault();
       return (e.returnValue = warningText);
     };
     const handleBrowseAway = () => {
-      // if (!unsavedChanges) return;
+      if (!isThereUnsavedChanges) return;
       if (window.confirm(warningText)) return;
       router.events.emit('routeChangeError');
       throw 'routeChange aborted.';
@@ -78,7 +93,7 @@ function Create() {
       window.removeEventListener('beforeunload', handleWindowClose);
       router.events.off('routeChangeStart', handleBrowseAway);
     };
-  });
+  }, []);
 
   return (
     <div className="h-full">

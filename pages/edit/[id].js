@@ -26,7 +26,6 @@ function ID({ data }) {
   const descriptionRef = useRef();
 
   useEffect(() => {
-    console.log(blogTitle !== data.blog_title, blogDescription !== data.description, blogData !== data.blog)
     if (blogTitle !== data.blog_title || blogDescription !== data.description || blogData !== data.blog) {
       setIsThereUnsavedChanges(true);
     } else {
@@ -37,7 +36,7 @@ function ID({ data }) {
   // prompt the user if they try and leave with unsaved changes
   useEffect(() => {
     const warningText =
-      'You may have unsaved changes. Changes will be lost';
+      'You may have unsaved changes. Changes will be lost.';
     const handleWindowClose = (e) => {
       if (!isThereUnsavedChanges) return;
       e.preventDefault();
@@ -76,7 +75,6 @@ function ID({ data }) {
     }
 
     finalURLName = encodeURIComponent(finalURLName);
-    console.log(finalURLName);
 
     await fetch("/api/updateBlogPost", {
       method: "PATCH",
