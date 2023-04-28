@@ -143,7 +143,7 @@ function ID({ data }) {
         <div onClick={() => update(blogTitle, blogDescription, blogData, data.blog_id)} className="rounded-md bg-[#20ff63] py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
           Update
         </div>
-        <div onClick={() => setIsDeleteMode(true)} className="rounded-md bg-[#ff5e5e] py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
+        <div onClick={() => setIsDeleteMode(true)} className="rounded-md bg-[#fc4e4e] py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
           Delete
         </div>
       </div>
