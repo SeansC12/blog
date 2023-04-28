@@ -18,24 +18,33 @@ function ID({ data }) {
 
   const [isDeleteMode, setIsDeleteMode] = useState(false);
 
+  const [isThereUnsavedChanges, setIsThereUnsavedChanges] = useState(false)
+
   const router = useRouter();
 
   const titleRef = useRef();
   const descriptionRef = useRef();
 
-  console.log(data)
+  useEffect(() => {
+    console.log(blogTitle !== data.blog_title, blogDescription !== data.description, blogData !== data.blog)
+    if (blogTitle !== data.blog_title || blogDescription !== data.description || blogData !== data.blog) {
+      setIsThereUnsavedChanges(true);
+    } else {
+      setIsThereUnsavedChanges(false);
+    }
+  })
 
   // prompt the user if they try and leave with unsaved changes
   useEffect(() => {
     const warningText =
-      'You have unsaved changes - are you sure you wish to leave this page?';
+      'You may have unsaved changes. Changes will be lost';
     const handleWindowClose = (e) => {
-      // if (!unsavedChanges) return;
+      if (!isThereUnsavedChanges) return;
       e.preventDefault();
       return (e.returnValue = warningText);
     };
     const handleBrowseAway = () => {
-      // if (!unsavedChanges) return;
+      if (!isThereUnsavedChanges) return;
       if (window.confirm(warningText)) return;
       router.events.emit('routeChangeError');
       throw 'routeChange aborted.';
@@ -49,9 +58,6 @@ function ID({ data }) {
   }, []);
 
   async function update(title, description, blog, blogID) {
-    // Get the user
-    const { data: { user } } = await supabaseClient.auth.getUser();
-
     // Recompute new url name
     const titleArray = title.split(" ");
     let slicedTitleArray = [];
@@ -83,6 +89,7 @@ function ID({ data }) {
       })
     });
 
+    setIsThereUnsavedChanges(false);
     router.push("/")
   }
 
