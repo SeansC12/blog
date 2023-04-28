@@ -49,7 +49,7 @@ function NavBar() {
       throw new Error(error);
     }
 
-    router.push("/");
+    router.reload();
   }
 
   return (

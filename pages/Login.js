@@ -3,6 +3,7 @@ import logo from "./../public/logo.png";
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import ErrorBanner from '../components/ErrorBanner';
 import Link from "next/link";
 
@@ -24,7 +25,7 @@ function Login() {
       return;
     }
 
-    router.push("/");
+    router.reload();
   }
 
   return (
@@ -64,6 +65,25 @@ function Login() {
       </div>
     </div>
   )
+}
+
+export const getServerSideProps = async (ctx) => {
+  const supabase = createServerSupabaseClient(ctx);
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  return { props: {} }
 }
 
 export default Login
