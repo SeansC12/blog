@@ -33,10 +33,11 @@ This blog supports the basic CRUD (still in development)
 - [x] Display blogs
 - [x] Clean routes (/user/blog)
 - [x] User Authentication
-  - [x] Row-Level Security
+  - [x] Server-Side Row-Level Security
   - [x] MySQL user store
 - [x] Able to update username
 - [x] Clean UI to see the blogs for each person
 - [x] Add images to blogs
+- [ ] Mobile view
 - [ ] Blog search function
 - [ ] Filter by tags
