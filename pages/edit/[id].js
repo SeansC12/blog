@@ -23,6 +23,8 @@ function ID({ data }) {
   const titleRef = useRef();
   const descriptionRef = useRef();
 
+  console.log(data)
+
   // prompt the user if they try and leave with unsaved changes
   useEffect(() => {
     const warningText =
@@ -46,7 +48,7 @@ function ID({ data }) {
     };
   }, []);
 
-  async function update(title, description, blog) {
+  async function update(title, description, blog, blogID) {
     // Get the user
     const { data: { user } } = await supabaseClient.auth.getUser();
 
@@ -70,14 +72,14 @@ function ID({ data }) {
     finalURLName = encodeURIComponent(finalURLName);
     console.log(finalURLName);
 
-    await fetch("/api/update", {
+    await fetch("/api/updateBlogPost", {
       method: "PATCH",
       body: JSON.stringify({
         blog_title: title,
         blog: blog,
         url_name: finalURLName,
         description: description,
-        person_id: user.id,
+        blog_id: blogID,
       })
     });
 
@@ -133,10 +135,10 @@ function ID({ data }) {
         </div> : null
       }
       <div className="flex justify-end items-center w-full sticky top-0">
-        <div onClick={() => update(blogTitle, blogDescription, blogData)} className="rounded-md bg-green-400 py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
+        <div onClick={() => update(blogTitle, blogDescription, blogData, data.blog_id)} className="rounded-md bg-[#20ff63] py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
           Update
         </div>
-        <div onClick={() => setIsDeleteMode(true)} className="rounded-md bg-red-400 py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
+        <div onClick={() => setIsDeleteMode(true)} className="rounded-md bg-[#ff5e5e] py-[0.35rem] px-4 text-black font-lato w-max mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
           Delete
         </div>
       </div>
