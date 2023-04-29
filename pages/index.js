@@ -14,7 +14,7 @@ export default function Home({ data }) {
   }, [activeTags]);
 
   return (
-    <div className="px-40 bg-white text-black">
+    <div className="px-5 sm:px-40 bg-white text-black">
       <div className="grid grid-cols-[70%_30%] grid-rows-1">
         <div className="col-start-1 col-span-1">
           <div className="ml-2 font-montserrat text-[#e60067] font-semibold tracking-widest text-lg">
@@ -34,7 +34,7 @@ export default function Home({ data }) {
             );
           })}
         </div>
-        <div className="col-start-2 col-span-1">
+        <div className="col-start-2 col-span-1 invisible md:visible">
           <div className="flex flex-col items-start justify-center">
             <div className="font-montserrat text-[#e60067] font-semibold tracking-widest text-lg ml-1 mb-5">
               [COMING] FILTER BY TAGS
