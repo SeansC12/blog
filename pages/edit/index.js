@@ -5,16 +5,18 @@ import { query } from "./../../lib/db"
 
 function index({ data }) {
   return (
-    <div className="px-96 flex items-center justify-center flex-col">
-      <div className="font-bold text-4xl mb-5">My blogs</div>
-      <div className="flex flex-col w-full gap-5">
-        {data.map((blog, key) => {
-          return (
-            <div className="w-full" key={key}>
-              <EditBlogCard blogTitle={blog.blog_title} blogDescription={blog.description} blogID={blog.blog_id} />
-            </div>
-          )
-        })}
+    <div className="flex items-center justify-center flex-col w-full">
+      <div className="w-3/4 sm:w-1/2 flex items-center justify-center flex-col">
+        <div className="font-bold text-xl md:text-4xl mb-5">My blogs</div>
+        <div className="flex flex-col w-full gap-5">
+          {data.map((blog, key) => {
+            return (
+              <div className="w-full" key={key}>
+                <EditBlogCard blogTitle={blog.blog_title} blogDescription={blog.description} blogID={blog.blog_id} />
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

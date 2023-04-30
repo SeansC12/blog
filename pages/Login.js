@@ -30,13 +30,13 @@ function Login() {
 
   return (
     <div className="flex items-center justify-center flex-col">
-      <div className="w-full p-10 flex items-center justify-center flex-col">
+      <div className="w-full p-5 sm:p-10 flex items-center justify-center flex-col">
         {error ?
           <ErrorBanner errorMessage={error} />
           : null}
         <div className="flex items-center mb-6 text-lg md:text-2xl font-semibold text-gray-900 dark:text-black">
           <Image className="w-12 aspect-square rounded-lg mr-2" src={logo} alt="logo" />
-          yoooo
+          Welcome
         </div>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -50,7 +50,7 @@ function Login() {
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Password</label>
-              <input ref={passwordRef} autoComplete="on" type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+              <input ref={passwordRef} autoComplete="on" type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm rounded-lg  block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-start">

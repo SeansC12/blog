@@ -7,11 +7,11 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import blog_icon from "./../public/blog_icon.png"
 
 function NavBar() {
   const isVisible = useScroll();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isNavigationMenuOpen, setIsNavigationMenuOpen] = useState(false)
   const userSettingsRef = useRef();
   const [user, setUser] = useState();
   const router = useRouter();
@@ -113,54 +113,21 @@ function NavBar() {
   } else {
     return (
       <div
-        className={`sticky z-50 bg-white text-black border-b-[1px] mb-4 border-b-white shadow-md h-16 top-0 flex items-center justify-evenly ${isVisible ? "top-0" : "-top-16"
-          } transition-all duration-500`}
+        className={`sticky z-50 bg-white text-black border-b-[1px] mb-4 border-b-white shadow-md h-16 w-full`}
       >
-        {user ? <button onClick={() => setIsNavigationMenuOpen((curr) => !curr)}>
-          Open
-        </button> : null}
-
-
-        {user && isNavigationMenuOpen ?
-          <div>
-            {window.location.href !== "http://localhost:3000/Create" ?
-              <Link href="/Create">
-                <div className="rounded-md bg-[#20ff63] py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
-                  Create
-                </div>
-              </Link>
-              :
-              null
-            }
-
-            <Link href="/edit">
-              <div className="rounded-md bg-[#43c5f4] py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
-                My blogs
-              </div>
-            </Link></div>
+        {user ?
+          <a href={"/edit"}>
+            <Image className="absolute top-1/2 -translate-y-1/2 left-5" src={blog_icon} />
+          </a>
           :
           null}
 
-        <Link href="/">
-          <Image src={logo} className="w-12 ml-5 rounded-lg" alt="logo" />
+        <Link className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2" href="/">
+          <Image src={logo} className="w-12 rounded-lg" alt="logo" />
         </Link>
 
         {user ?
-          <div className="flex items-center justify-end flex-row pr-5">
-            {/* {window.location.href !== "http://localhost:3000/Create" ?
-              <Link href="/Create">
-                <div className="rounded-md bg-[#20ff63] py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
-                  Create
-                </div>
-              </Link>
-              :
-              null
-            }
-            <Link href="/edit">
-              <div className="rounded-md bg-[#43c5f4] py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
-                My blogs
-              </div>
-            </Link> */}
+          <div className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center justify-end flex-row">
             <div ref={userSettingsRef}>
               <div onClick={() => setIsUserMenuOpen((curr) => !curr)}>
                 <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
