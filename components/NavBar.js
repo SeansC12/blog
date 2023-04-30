@@ -148,7 +148,7 @@ function NavBar() {
             </div>
           </div>
           :
-          <Link href="/Login">
+          <Link className="w-max absolute top-1/2 -translate-y-1/2 right-1" href="/Login">
             <div className="rounded-md bg-[#43c5f4] py-[0.35rem] px-4 text-black font-lato mr-5 hover:scale-105 transition-all ease-in cursor-pointer select-none">
               Login
             </div>
