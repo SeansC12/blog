@@ -31,7 +31,7 @@ function ID({ data }) {
     } else {
       setIsThereUnsavedChanges(false);
     }
-  }, [blogTItle, blogDescription, blogData])
+  }, [blogTitle, blogDescription, blogData])
 
   // prompt the user if they try and leave with unsaved changes
   useEffect(() => {
