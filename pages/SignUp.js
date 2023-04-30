@@ -49,7 +49,7 @@ function Login() {
           <ErrorBanner errorMessage={error} />
           : null}
         <div className="flex items-center mb-6 text-base sm:text-lg md:text-2xl font-semibold text-gray-900 dark:text-black">
-          <Image className="w-10 sm:w-12 aspect-square rounded-lg mr-2" src={logo} alt="logo" />
+          <Image width={40} height={40} className="w-10 sm:w-12 aspect-square rounded-lg mr-2" src={logo} alt="logo" />
           It is great to meet you!
         </div>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">

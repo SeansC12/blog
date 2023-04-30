@@ -65,10 +65,10 @@ function Profile() {
     <div className="flex items-center justify-center flex-col">
       <div className="px-10 flex justify-center items-center text-black">
         <div className="flex gap-5 items-center justify-center">
-          <Image src={`https://ui-avatars.com/api/?name=${user && user.name}`} alt="profile picture" className="rounded-full w-24 aspect-square" />
+          <Image width={96} height={96} src={`https://ui-avatars.com/api/?name=${user && user.name}`} alt="profile picture" className="rounded-full w-24 aspect-square" />
           <div className="flex flex-col">
             <div className="font-lato">Name</div>
-            <input onChange={handleNameChange} ref={nameRef} type="text" defaultValue={user ? user.name : ""} className="text-black w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"></input>
+            <input onChange={handleNameChange} ref={nameRef} type="text" defaultValue={user ? user.name : ""} className="text-black w-full rounded-md border-2 px-2 py-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"></input>
           </div>
         </div>
       </div>

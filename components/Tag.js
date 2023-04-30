@@ -3,7 +3,6 @@ import React from 'react'
 function Tag({ tagName, key, activeTags, setActiveTags }) {
   return (
     <div
-      key={key}
       onClick={() => {
         if (activeTags.includes(tagName)) {
           setActiveTags((curr) =>

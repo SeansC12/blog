@@ -60,7 +60,7 @@ function BlogCard({ title, description, personName, url, personImage }) {
         onMouseEnter={() => setIsHoveringOverAuthorSpace(true)}
         onMouseLeave={() => setIsHoveringOverAuthorSpace(false)}
       >
-        <Image src={personImage} alt="profile picture" className="w-7 aspect-square rounded-full" />
+        <Image src={personImage} alt="profile picture" width={28} height={28} className="w-7 aspect-square rounded-full" />
         <motion.div
           animate={isHoveringOverAuthorSpace ? "isHovering" : "isNotHovering"}
           variants={highlightedTextVariants}

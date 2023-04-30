@@ -60,7 +60,7 @@ function NavBar() {
           } transition-all duration-500`}
       >
         <Link href="/">
-          <Image src={logo} className="w-12 ml-5 rounded-lg" alt="logo" />
+          <Image src={logo} width={48} height={48} className="w-12 ml-5 rounded-lg" alt="logo" />
         </Link>
         {user ?
           <div className="block mr-5" ref={userSettingsRef}>
@@ -84,7 +84,7 @@ function NavBar() {
                 <div onClick={() => setIsUserMenuOpen((curr) => !curr)}>
                   <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                     <span className="sr-only">Open user menu</span>
-                    <Image className="h-8 w-8 rounded-full" src={`https://ui-avatars.com/api/?name=${user && user.name}`} alt="" />
+                    <Image width={32} height={32} className="h-8 w-8 rounded-full" src={`https://ui-avatars.com/api/?name=${user && user.name}`} alt="" />
                   </button>
                 </div>
                 {isUserMenuOpen ?
@@ -117,13 +117,13 @@ function NavBar() {
       >
         {user ?
           <a href={"/edit"}>
-            <Image className="absolute top-1/2 -translate-y-1/2 left-5" alt="blog icon" src={blog_icon} />
+            <Image fill className="absolute top-1/2 -translate-y-1/2 left-5" alt="blog icon" src={blog_icon} />
           </a>
           :
           null}
 
         <Link className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2" href="/">
-          <Image src={logo} className="w-12 rounded-lg" alt="logo" />
+          <Image src={logo} width={48} height={48} className="w-12 rounded-lg" alt="logo" />
         </Link>
 
         {user ?
@@ -132,7 +132,7 @@ function NavBar() {
               <div onClick={() => setIsUserMenuOpen((curr) => !curr)}>
                 <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Open user menu</span>
-                  <Image className="h-8 w-8 rounded-full" src={`https://ui-avatars.com/api/?name=${user && user.name}`} alt="" />
+                  <Image width={32} height={32} className="h-8 w-8 rounded-full" src={`https://ui-avatars.com/api/?name=${user && user.name}`} alt="" />
                 </button>
               </div>
               {isUserMenuOpen ?
