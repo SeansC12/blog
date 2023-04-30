@@ -117,7 +117,7 @@ function NavBar() {
       >
         {user ?
           <a href={"/edit"}>
-            <Image fill className="absolute top-1/2 -translate-y-1/2 left-5" alt="blog icon" src={blog_icon} />
+            <Image width={32} height={32} className="absolute top-1/2 -translate-y-1/2 left-5" alt="blog icon" src={blog_icon} />
           </a>
           :
           null}
