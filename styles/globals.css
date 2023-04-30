@@ -9,41 +9,49 @@
     font-size: revert;
     font-weight: revert;
     margin: revert;
+    line-height: 40px;
   }
   .no-tailwindcss-base h2 {
     font-size: revert;
     font-weight: revert;
     margin: revert;
+    line-height: 40px;
   }
   .no-tailwindcss-base h3 {
     font-size: revert;
     font-weight: revert;
     margin: revert;
+    line-height: 40px;
   }
   .no-tailwindcss-base h4 {
     font-size: revert;
     font-weight: revert;
     margin: revert;
+    line-height: 40px;
   }
   .no-tailwindcss-base h5 {
     font-size: revert;
     font-weight: revert;
     margin: revert;
+    line-height: 40px;
   }
   .no-tailwindcss-base h6 {
     font-size: revert;
     font-weight: revert;
     margin: revert;
+    line-height: 40px;
   }
   .no-tailwindcss-base ol {
     list-style: revert;
     margin: revert;
     padding: revert;
+    line-height: 40px;
   }
   .no-tailwindcss-base ul {
     list-style: revert;
     margin: revert;
     padding: revert;
+    line-height: 40px;
   }
   .no-tailwindcss-base img {
     margin-top: 30px;
@@ -52,5 +60,6 @@
   }
   .no-tailwindcss-base a {
     text-decoration: underline;
+    line-height: 40px;
   }
 }
