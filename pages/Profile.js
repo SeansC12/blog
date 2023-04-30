@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
-import { supabase } from '../utils/supabase';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import Image from 'next/image';
 
 function Profile() {
   const [changesMade, setChangesMade] = useState(false);
@@ -65,7 +65,7 @@ function Profile() {
     <div className="flex items-center justify-center flex-col">
       <div className="px-10 flex justify-center items-center text-black">
         <div className="flex gap-5 items-center justify-center">
-          <img src={`https://ui-avatars.com/api/?name=${user && user.name}`} className="rounded-full w-24 aspect-square" />
+          <Image src={`https://ui-avatars.com/api/?name=${user && user.name}`} alt="profile picture" className="rounded-full w-24 aspect-square" />
           <div className="flex flex-col">
             <div className="font-lato">Name</div>
             <input onChange={handleNameChange} ref={nameRef} type="text" defaultValue={user ? user.name : ""} className="text-black w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"></input>

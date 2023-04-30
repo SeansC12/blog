@@ -7,7 +7,7 @@ export default function Home({ data, person }) {
   return (
     <div className="px-96">
       <div className="w-full flex items-center justify-center flex-col gap-5">
-        <img src={`https://ui-avatars.com/api/?name=${person && person}`} width={150} height={150} className="aspect-square rounded-full" />
+        <Image src={`https://ui-avatars.com/api/?name=${person && person}`} alt="profile picture" width={150} height={150} className="aspect-square rounded-full" />
         <h1 className="font-bold text-3xl">{person}</h1>
       </div>
       {data && data.map((blog, key) => {

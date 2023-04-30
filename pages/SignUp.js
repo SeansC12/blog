@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import ErrorBanner from '../components/ErrorBanner';
-import Link from "next/link";
 
 function Login() {
   const usernameRef = useRef();

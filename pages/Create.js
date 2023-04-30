@@ -21,13 +21,12 @@ function Create() {
   const [isThereUnsavedChanges, setIsThereUnsavedChanges] = useState(false)
 
   useEffect(() => {
-    console.log(isThereUnsavedChanges)
     if (blogTitle || blogData) {
       setIsThereUnsavedChanges(true);
     } else {
       setIsThereUnsavedChanges(false);
     }
-  })
+  }, [blogTitle, blogData])
 
   async function publish(title, blog) {
     // Get the user
