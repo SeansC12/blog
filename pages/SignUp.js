@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import ErrorBanner from '../components/ErrorBanner';
+import SuccessBanner from "../components/SuccessBanner"
 
 function Login() {
   const usernameRef = useRef();
@@ -11,6 +12,7 @@ function Login() {
   const passwordConfirmRef = useRef();
   const router = useRouter();
   const [error, setError] = useState();
+  const [isAccountCreated, setIsAccountCreated] = useState(false);
   const supabaseClient = useSupabaseClient();
 
   async function signUpHandler(email, password, confirmPassword) {
@@ -38,7 +40,7 @@ function Login() {
       })
     })
 
-    router.push("/");
+    setIsAccountCreated(true);
   }
 
   return (
@@ -47,6 +49,10 @@ function Login() {
 
         {error ?
           <ErrorBanner errorMessage={error} />
+          : null}
+
+        {isAccountCreated ?
+          <SuccessBanner successMessage={"Your account has been successfully created. A verification email has been sent to you."} />
           : null}
         <div className="flex items-center mb-6 text-base sm:text-lg md:text-2xl font-semibold text-gray-900 dark:text-black">
           <Image width={40} height={40} className="w-10 sm:w-12 aspect-square rounded-lg mr-2" src={logo} alt="logo" />
