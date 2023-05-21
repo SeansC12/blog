@@ -71,7 +71,7 @@ function Login() {
 
 export const getServerSideProps = async (ctx) => {
   const supabase = createServerSupabaseClient(ctx);
-  // Check if we have a session
+  // Check if we have an active session
   const {
     data: { session },
   } = await supabase.auth.getSession()
