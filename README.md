@@ -8,6 +8,8 @@
 
 An open-source blog, made for learning purposes.
 
+https://github.com/SeansC12/blog/assets/88256324/a80c7a51-f6ec-451a-9c14-41668167c088
+
 ## Tech stack
 
 - [React](https://react.dev/)
