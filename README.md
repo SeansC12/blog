@@ -1,6 +1,4 @@
-<div align="center">
-<h1>EZ Blog</h1>
-</div>
+# [EZ Blog](https://blog-three-rho-54.vercel.app/)
 
 <div align="center">
 <img src="https://github.com/SeansC12/blog/blob/main/public/logo.png"  width="150" height="150">
